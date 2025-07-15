@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using Inter as the primary font as per instructions -->
+    <!-- Using Inter as the primary font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -31,6 +31,7 @@
                 <li><a href="#about" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">About</a></li>
                 <li><a href="#projects" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Projects</a></li>
                 <li><a href="#experience" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Experience</a></li>
+                <li><a href="#tools" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Tools</a></li>
                 <li><a href="#contact" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Contact</a></li>
             </ul>
             <div class="nav-toggle flex-col justify-center items-center md:hidden cursor-pointer space-y-1">
@@ -47,6 +48,7 @@
         <a href="#about" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">About</a>
         <a href="#projects" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Projects</a>
         <a href="#experience" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Experience</a>
+        <a href="#tools" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Tools</a>
         <a href="#contact" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Contact</a>
     </div>
 
@@ -90,12 +92,7 @@
             </div>
             <div class="hero-image flex justify-center animate-slideInRight">
                 <div class="image-container relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
-                    <div class="image-placeholder w-full h-full bg-gradient-to-br from-emerald-400 to-teal-600 rounded-full flex items-center justify-center text-8xl text-white relative z-10 shadow-2xl">
-                         <!-- Using a more abstract tech-related SVG icon -->
-                        <svg class="w-3/4 h-3/4 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Coding on a laptop" class="w-full h-full object-cover rounded-full shadow-2xl relative z-10">
                     <div class="image-border absolute inset-[-10px] border-4 border-transparent rounded-full bg-gradient-to-br from-emerald-400 via-teal-600 to-lime-500 bg-[length:300%_300%] animate-rotateBorder z-0"></div>
                 </div>
             </div>
@@ -202,7 +199,7 @@
             <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative animate-slideInLeft" data-category="hardware">
                     <div class="project-image h-48 relative overflow-hidden">
-                        <img src="https://placehold.co/400x200/22c55e/ffffff?text=AI+Vision" alt="Visual Read Assist Device" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1620712943543-285f726a8484?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI Vision Concept" class="w-full h-full object-cover">
                         <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                             <a href="https://github.com/sukant-saumya" target="_blank" class="project-link text-white text-3xl p-4 rounded-full bg-emerald-800 bg-opacity-30 hover:bg-opacity-50 transition-all duration-300">
                                 <i class="fab fa-github"></i>
@@ -218,10 +215,6 @@
                             <span class="tech-tag px-3 py-1 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full text-sm text-emerald-300">Raspberry Pi 4</span>
                             <span class="tech-tag px-3 py-1 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full text-sm text-emerald-300">Python</span>
                             <span class="tech-tag px-3 py-1 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full text-sm text-emerald-300">Tesseract OCR</span>
-                            <span class="tech-tag px-3 py-1 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full text-sm text-emerald-300">TTS</span>
-                        </div>
-                        <div class="project-meta text-sm text-gray-400 italic">
-                            <span class="project-org">Engineering Clinics, 2023</span>
                         </div>
                         <button class="generate-description-btn mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
                             data-project-title="Visual Read Assist Device"
@@ -233,7 +226,7 @@
 
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative animate-slideInRight" data-category="mobile">
                     <div class="project-image h-48 relative overflow-hidden">
-                        <img src="https://placehold.co/400x200/3b82f6/ffffff?text=Parking+App" alt="Parking Management System" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1576679564263-9f94a8a7c131?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Parking lot with cars" class="w-full h-full object-cover">
                         <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                             <a href="https://github.com/sukant-saumya" target="_blank" class="project-link text-white text-3xl p-4 rounded-full bg-blue-800 bg-opacity-30 hover:bg-opacity-50 transition-all duration-300">
                                 <i class="fab fa-github"></i>
@@ -249,10 +242,6 @@
                             <span class="tech-tag px-3 py-1 bg-blue-900 bg-opacity-30 border border-blue-700 rounded-full text-sm text-blue-300">Flutter</span>
                             <span class="tech-tag px-3 py-1 bg-blue-900 bg-opacity-30 border border-blue-700 rounded-full text-sm text-blue-300">Firebase</span>
                             <span class="tech-tag px-3 py-1 bg-blue-900 bg-opacity-30 border border-blue-700 rounded-full text-sm text-blue-300">Google Maps API</span>
-                            <span class="tech-tag px-3 py-1 bg-blue-900 bg-opacity-30 border border-blue-700 rounded-full text-sm text-blue-300">Stripe/PayPal</span>
-                        </div>
-                        <div class="project-meta text-sm text-gray-400 italic">
-                            <span class="project-org">Personal Project</span>
                         </div>
                         <button class="generate-description-btn mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
                             data-project-title="Parking Management System"
@@ -264,7 +253,7 @@
 
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative animate-slideInLeft" data-category="mobile">
                     <div class="project-image h-48 relative overflow-hidden">
-                        <img src="https://placehold.co/400x200/ec4899/ffffff?text=Music+App" alt="Music Player App" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Person wearing headphones" class="w-full h-full object-cover">
                         <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                             <a href="https://github.com/sukant-saumya" target="_blank" class="project-link text-white text-3xl p-4 rounded-full bg-pink-800 bg-opacity-30 hover:bg-opacity-50 transition-all duration-300">
                                 <i class="fab fa-github"></i>
@@ -279,12 +268,7 @@
                         <div class="project-tech flex flex-wrap gap-2 mb-4">
                             <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">Flutter</span>
                             <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">Dart</span>
-                            <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">Retrofit</span>
-                            <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">SQLite</span>
-                            <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">ExoPlayer</span>
-                        </div>
-                        <div class="project-meta text-sm text-gray-400 italic">
-                            <span class="project-org">Personal Project</span>
+                            <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">Clean Architecture</span>
                         </div>
                         <button class="generate-description-btn mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
                             data-project-title="Music Player App"
@@ -294,10 +278,9 @@
                     </div>
                 </div>
 
-                <!-- New AI-Generated Project Idea Card -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative animate-slideInRight" data-category="ai-generated">
                     <div class="project-image h-48 relative overflow-hidden">
-                        <img src="https://placehold.co/400x200/f59e0b/ffffff?text=AI+Study" alt="AI-Powered Study Buddy" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI Robot studying" class="w-full h-full object-cover">
                         <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                             <span class="text-white text-xl">AI Generated</span>
                         </div>
@@ -305,15 +288,12 @@
                     <div class="project-content p-6">
                         <h3 class="project-title text-xl font-semibold mb-2 text-yellow-400">AI-Powered Study Buddy</h3>
                         <p class="project-description text-gray-300 leading-relaxed mb-4">
-                            An intelligent application designed to help students optimize their learning process. It offers personalized study plans, generates practice questions, and provides real-time feedback based on learning patterns.
+                            An intelligent app that offers personalized study plans, generates practice questions, and provides real-time feedback.
                         </p>
                         <div class="project-tech flex flex-wrap gap-2 mb-4">
                             <span class="tech-tag px-3 py-1 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-full text-sm text-yellow-300">AI/ML</span>
                             <span class="tech-tag px-3 py-1 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-full text-sm text-yellow-300">Python</span>
                             <span class="tech-tag px-3 py-1 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-full text-sm text-yellow-300">Generative AI</span>
-                        </div>
-                        <div class="project-meta text-sm text-gray-400 italic">
-                            <span class="project-org">Concept Project</span>
                         </div>
                         <button class="generate-description-btn mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
                             data-project-title="AI-Powered Study Buddy"
@@ -322,7 +302,6 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -420,8 +399,28 @@
         </div>
     </section>
 
+    <!-- Tools Section -->
+    <section id="tools" class="tools py-16 md:py-24 bg-gradient-to-br from-gray-900 to-blue-950">
+        <div class="container max-w-6xl mx-auto px-4">
+            <div class="section-header text-center mb-16 animate-fadeIn">
+                <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text">Fun Tools</h2>
+                <p class="section-subtitle text-lg text-gray-300">A little widget inspired by railway apps</p>
+            </div>
+            <div class="pnr-widget max-w-2xl mx-auto bg-gray-800 rounded-xl border border-gray-700 shadow-lg p-8 animate-scaleIn">
+                <h3 class="text-2xl font-bold text-center text-emerald-400 mb-6">PNR Status Checker</h3>
+                <div class="pnr-form flex flex-col sm:flex-row gap-4 mb-6">
+                    <input type="text" id="pnr-input" class="form-control flex-grow p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all duration-300" placeholder="Enter 10-Digit PNR Number" maxlength="10">
+                    <button id="pnr-submit-btn" class="btn btn-primary bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">Check Status</button>
+                </div>
+                <div id="pnr-result" class="pnr-result-container hidden mt-6 p-6 bg-gray-900 rounded-lg border border-gray-700">
+                    <!-- PNR results will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
-    <section id="contact" class="contact py-16 md:py-24 bg-gradient-to-br from-gray-900 to-blue-950">
+    <section id="contact" class="contact py-16 md:py-24 bg-gradient-to-br from-blue-950 to-gray-900">
         <div class="container max-w-6xl mx-auto px-4">
             <div class="section-header text-center mb-16 animate-fadeIn">
                 <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text">Let's Connect</h2>
