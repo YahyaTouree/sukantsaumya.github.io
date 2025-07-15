@@ -2,243 +2,87 @@
 ::-webkit-scrollbar {
     width: 8px;
 }
-
 ::-webkit-scrollbar-track {
     background: #1a1a2e;
 }
-
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #10b981, #06b6d4); /* Teal/Green gradient */
+    background: linear-gradient(45deg, #10b981, #06b6d4);
     border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #06b6d4, #10b981); /* Reverse gradient on hover */
+    background: linear-gradient(45deg, #06b6d4, #10b981);
 }
 
-/* Base Font for Inter */
-.font-inter {
-    font-family: 'Inter', sans-serif;
-}
-.font-mono {
-    font-family: 'JetBrains Mono', monospace;
-}
+/* Fonts */
+.font-inter { font-family: 'Inter', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
 
-/* Navigation Link Hover Effect */
-.nav-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent); /* Emerald transparent */
-    transition: all 0.3s ease;
-    z-index: -1;
-}
-
-.nav-link:hover::before {
-    left: 100%;
-}
-
-/* Japanese Neon Text */
-.japanese-neon-text {
-    font-family: 'JetBrains Mono', monospace; /* Or a more suitable neon-like font if available */
-    color: #39ff14; /* Neon Green */
-    text-shadow:
-        0 0 5px #39ff14,
-        0 0 10px #39ff14,
-        0 0 20px #39ff14,
-        0 0 40px #39ff14,
-        0 0 80px #39ff14;
-    animation: neon-glow 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes neon-glow {
-    from {
-        text-shadow:
-            0 0 5px #39ff14,
-            0 0 10px #39ff14,
-            0 0 20px #39ff14,
-            0 0 40px #39ff14,
-            0 0 80px #39ff14;
-    }
-    to {
-        text-shadow:
-            0 0 2.5px #39ff14,
-            0 0 5px #39ff14,
-            0 0 10px #39ff14,
-            0 0 20px #39ff14,
-            0 0 40px #39ff14,
-            0 0 60px #39ff14;
-    }
-}
-
-
-/* Hero Section Animations */
-@keyframes particleMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-50px, -50px); }
-}
-
+/* Base Animations */
 @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
 }
-
 @keyframes gradientShift {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
 }
-
 @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+    50% { opacity: 0; }
 }
-
 @keyframes rotateBorder {
-    0% { transform: rotate(0deg); background-position: 0% 50%; }
-    100% { transform: rotate(360deg); background-position: 100% 50%; }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
-
 @keyframes scroll {
-    0% { transform: translateX(-50%) translateY(0); opacity: 1; }
-    100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(20px); opacity: 0; }
 }
-
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-    40% { transform: translateX(-50%) translateY(-10px); }
-    60% { transform: translateX(-50%) translateY(-5px); }
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
 }
 
-/* Section Animations */
-@keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Intersection Observer Classes */
-.fade-in {
+/* Scroll-triggered Animations */
+.animate-fadeIn, .animate-slideInLeft, .animate-slideInRight, .animate-scaleIn, .animate-fadeInUp {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+.animate-fadeIn { transform: translateY(30px); }
+.animate-slideInLeft { transform: translateX(-50px); }
+.animate-slideInRight { transform: translateX(50px); }
+.animate-scaleIn { transform: scale(0.9); }
+.animate-fadeInUp { transform: translateY(20px); }
 
-.fade-in.visible {
+.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(0, 0) scale(1);
 }
 
-.slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.6s ease;
-}
-
-.slide-in-left.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.6s ease;
-}
-
-.slide-in-right.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.scale-in {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.6s ease;
-}
-
-.scale-in.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Loading Animation */
+/* Loading Screen */
 .loading.hidden {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Particle floating animation */
-@keyframes floatParticle {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-    }
+/* Navigation */
+.nav.scrolled {
+    background-color: rgba(17, 24, 39, 0.9); /* bg-gray-900 with opacity */
+    backdrop-filter: blur(10px);
 }
+.nav-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-/* Ripple effect */
-@keyframes rippleEffect {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-/* Rainbow animation for easter egg */
-@keyframes rainbow {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
-}
-
-/* Mobile Navigation Toggle Animation */
-.nav-toggle.active span:nth-child(1) {
-    transform: translateY(4px) rotate(45deg);
-}
-
-.nav-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.nav-toggle.active span:nth-child(3) {
-    transform: translateY(-4px) rotate(-45deg);
-}
-
-/* Mobile Nav Menu */
-.mobile-nav-menu.active {
-    transform: translateX(0);
-}
-
-/* Project Filter Button Active State */
+/* Project Filtering */
 .filter-btn.active {
-    background: linear-gradient(45deg, #10b981, #06b6d4); /* Emerald/Teal gradient */
+    background: linear-gradient(45deg, #10b981, #06b6d4);
     color: white;
     transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+.project-card {
+    transition: display 0.3s ease;
 }
 
 /* Notification System */
@@ -249,24 +93,21 @@
     padding: 1rem 1.5rem;
     border-radius: 0.5rem;
     z-index: 10000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateX(calc(100% + 20px));
+    transition: transform 0.3s ease-in-out;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
 }
-
+.notification.show {
+    transform: translateX(0);
+}
 .notification--success {
-    background: rgba(16, 185, 129, 0.9); /* Emerald green */
+    background: #10b981; /* Emerald-500 */
     color: white;
 }
-
 .notification--error {
-    background: rgba(239, 68, 68, 0.9);
+    background: #ef4444; /* Red-500 */
     color: white;
 }
-
 .notification-close {
     background: none;
     border: none;
@@ -274,40 +115,32 @@
     font-size: 1.5rem;
     cursor: pointer;
     line-height: 1;
+    margin-left: 1rem;
 }
 
-/* Modal Specific Styles */
+/* Modal Styles */
 .modal-overlay {
     transition: opacity 0.3s ease;
 }
-
-.modal-content {
-    transition: all 0.3s ease;
+.modal-overlay.hidden {
+    pointer-events: none;
 }
-
+.modal-content {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
 .modal-overlay.show {
     opacity: 1;
 }
-
 .modal-overlay.show .modal-content {
     transform: scale(1);
     opacity: 1;
 }
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #374151; } /* gray-700 */
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #4b5563; } /* gray-600 */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #6b7280; } /* gray-500 */
 
-.custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: #333;
-    border-radius: 3px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 3px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #777;
+/* PNR Widget Specific Styles */
+.pnr-result-container {
+    transition: all 0.3s ease-in-out;
 }
