@@ -336,7 +336,7 @@ async function callGemini(prompt, jsonSchema = null) {
         };
     }
 
-    const apiKey = ""; // Provided by Canvas at runtime
+    const apiKey = "AIzaSyCc_DypSOJUn--LeWBQqxHyhBeSzj_ZLPM";
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(apiUrl, {
