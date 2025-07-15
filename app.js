@@ -301,7 +301,7 @@ function initParticles() {
             position: absolute;
             width: ${Math.random() * 4 + 2}px; /* Random size between 2px and 6px */
             height: ${Math.random() * 4 + 2}px;
-            background: rgba(0, 212, 255, ${Math.random() * 0.5 + 0.2}); /* Semi-transparent blue */
+            background: rgba(16, 185, 129, ${Math.random() * 0.5 + 0.2}); /* Semi-transparent emerald green */
             border-radius: 50%;
             left: ${Math.random() * 100}%; /* Random horizontal position */
             top: ${Math.random() * 100}%; /* Random vertical position */
@@ -320,7 +320,7 @@ const skillItems = document.querySelectorAll('.skill-item');
 skillItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
         item.style.transform = 'translateY(-2px) scale(1.05)';
-        item.style.boxShadow = '0 10px 25px rgba(0, 212, 255, 0.3)';
+        item.style.boxShadow = '0 10px 25px rgba(16, 185, 129, 0.3)'; // Emerald shadow
     });
 
     item.addEventListener('mouseleave', () => {
@@ -561,25 +561,38 @@ async function generateProjectDescription(projectTitle, currentDescription) {
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
     try {
+        console.log("Attempting to call Gemini API with prompt:", prompt);
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
 
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Gemini API error response:", response.status, errorData);
+            modalProjectDescription.textContent = `Error: ${errorData.error?.message || 'Failed to get a valid response from API.'}`;
+            showNotification('Failed to generate description. API error.', 'error');
+            return;
+        }
+
         const result = await response.json();
+        console.log("Gemini API raw result:", result);
 
         if (result.candidates && result.candidates.length > 0 &&
             result.candidates[0].content && result.candidates[0].content.parts &&
             result.candidates[0].content.parts.length > 0) {
             const text = result.candidates[0].content.parts[0].text;
             modalProjectDescription.innerHTML = text.replace(/\n/g, '<br>'); // Display text, convert newlines to <br>
+            showNotification('Description generated successfully!', 'success');
         } else {
-            modalProjectDescription.textContent = "Could not generate description. Please try again.";
-            console.error("Gemini API response structure unexpected:", result);
+            modalProjectDescription.textContent = "Could not generate description. The API response was empty or malformed.";
+            showNotification('Failed to generate description. Empty response.', 'error');
+            console.error("Gemini API response structure unexpected or empty content:", result);
         }
     } catch (error) {
         modalProjectDescription.textContent = "Error connecting to the Gemini API. Please check your network or try again later.";
+        showNotification('Network error. Could not reach API.', 'error');
         console.error("Error calling Gemini API:", error);
     } finally {
         modalLoadingSpinner.classList.add('hidden'); // Hide spinner
