@@ -1,8 +1,7 @@
 // DOM Elements
 const nav = document.querySelector('.nav');
 const navToggle = document.querySelector('.nav-toggle');
-const navMenu = document.querySelector('.nav-menu'); // Desktop menu
-const mobileNavMenu = document.querySelector('.mobile-nav-menu'); // Mobile menu
+const mobileNavMenu = document.querySelector('.mobile-nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const typingText = document.querySelector('.typing-text');
 const filterButtons = document.querySelectorAll('.filter-btn');
@@ -11,7 +10,7 @@ const contactForm = document.querySelector('.form');
 const loadingScreen = document.querySelector('.loading');
 const currentYearElement = document.getElementById('current-year');
 
-// Modal Elements for Gemini API Feature
+// Modal Elements for Project Description
 const projectDescriptionModal = document.getElementById('project-description-modal');
 const modalCloseBtn = projectDescriptionModal?.querySelector('.modal-close-btn');
 const modalProjectTitle = projectDescriptionModal?.querySelector('#modal-project-title');
@@ -19,594 +18,345 @@ const modalProjectDescription = projectDescriptionModal?.querySelector('#modal-p
 const modalLoadingSpinner = projectDescriptionModal?.querySelector('#modal-loading-spinner');
 const generateDescriptionButtons = document.querySelectorAll('.generate-description-btn');
 
+// PNR Widget Elements
+const pnrInput = document.getElementById('pnr-input');
+const pnrSubmitBtn = document.getElementById('pnr-submit-btn');
+const pnrResultContainer = document.getElementById('pnr-result');
+
+// --- Initial Setup ---
+
 // Loading Screen
 window.addEventListener('load', () => {
     setTimeout(() => {
         if (loadingScreen) {
             loadingScreen.classList.add('hidden');
         }
-    }, 1000); // Hide loading screen after 1 second
+    }, 500);
 });
 
 // Typing Animation
-const phrases = [
-    "Flutter Developer",
-    "CS Student",
-    "Mobile App Developer",
-    "Problem Solver",
-    "Tech Enthusiast"
-];
-
-let currentPhrase = 0;
-let currentChar = 0;
-let isDeleting = false;
-let typingSpeed = 100;
-
-function typeText() {
-    if (!typingText) return; // Exit if typingText element is not found
-
-    const current = phrases[currentPhrase];
-
-    if (isDeleting) {
-        typingText.textContent = current.substring(0, currentChar - 1);
-        currentChar--;
-        typingSpeed = 50; // Faster deleting
-    } else {
-        typingText.textContent = current.substring(0, currentChar + 1);
-        currentChar++;
-        typingSpeed = 100; // Normal typing speed
-    }
-
-    if (!isDeleting && currentChar === current.length) {
-        isDeleting = true;
-        typingSpeed = 2000; // Pause before deleting
-    } else if (isDeleting && currentChar === 0) {
-        isDeleting = false;
-        currentPhrase = (currentPhrase + 1) % phrases.length;
-        typingSpeed = 500; // Pause before typing next phrase
-    }
-
-    setTimeout(typeText, typingSpeed);
-}
-
-// Start typing animation on DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(typeText, 1000); // Start after a short delay
+    const phrases = ["Flutter Developer", "CS Student", "Mobile App Developer", "Problem Solver", "Tech Enthusiast"];
+    let currentPhrase = 0;
+    let currentChar = 0;
+    let isDeleting = false;
+
+    function typeText() {
+        if (!typingText) return;
+        const current = phrases[currentPhrase];
+        let typeSpeed = 100;
+
+        if (isDeleting) {
+            typingText.textContent = current.substring(0, currentChar - 1);
+            currentChar--;
+            typeSpeed = 50;
+        } else {
+            typingText.textContent = current.substring(0, currentChar + 1);
+            currentChar++;
+        }
+
+        if (!isDeleting && currentChar === current.length) {
+            isDeleting = true;
+            typeSpeed = 2000;
+        } else if (isDeleting && currentChar === 0) {
+            isDeleting = false;
+            currentPhrase = (currentPhrase + 1) % phrases.length;
+            typeSpeed = 500;
+        }
+        setTimeout(typeText, typeSpeed);
+    }
+    setTimeout(typeText, 1000);
 });
+
+
+// --- UI Enhancements & Animations ---
 
 // Navigation Scroll Effect
 window.addEventListener('scroll', () => {
-    if (nav) { // Check if nav element exists
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-            nav.classList.add('shadow-lg'); // Add shadow on scroll
-        } else {
-            nav.classList.remove('scrolled');
-            nav.classList.remove('shadow-lg'); // Remove shadow when at top
-        }
+    if (nav) {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+        nav.classList.toggle('shadow-lg', window.scrollY > 50);
     }
 });
 
 // Mobile Navigation Toggle
 navToggle?.addEventListener('click', () => {
     navToggle.classList.toggle('active');
-    mobileNavMenu.classList.toggle('translate-x-full'); // Slide out from right
-    mobileNavMenu.classList.toggle('translate-x-0'); // Slide in
+    mobileNavMenu.classList.toggle('translate-x-full');
+    mobileNavMenu.classList.toggle('translate-x-0');
 });
 
-// Close mobile menu when clicking on a link
-mobileNavMenu.querySelectorAll('.nav-link').forEach(link => {
+// Close mobile menu on link click
+mobileNavMenu?.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navToggle.classList.remove('active');
-        mobileNavMenu.classList.remove('translate-x-0');
         mobileNavMenu.classList.add('translate-x-full');
+        mobileNavMenu.classList.remove('translate-x-0');
     });
 });
 
-// Smooth Scrolling for Navigation Links
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
+// Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - (nav ? nav.offsetHeight : 0); // Account for fixed navbar height
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const offsetTop = target.offsetTop - (nav ? nav.offsetHeight : 0);
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
         }
     });
 });
 
 // Intersection Observer for Animations
-const observerOptions = {
-    threshold: 0.1, // Trigger when 10% of the element is visible
-    rootMargin: '0px 0px -50px 0px' // Adjust trigger point slightly
-};
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-        } else {
-            // Optional: remove 'visible' class when out of view
-            // entry.target.classList.remove('visible');
+            observer.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, { threshold: 0.1 });
 
-// Observe elements for animations
 document.addEventListener('DOMContentLoaded', () => {
-    // Select elements that should animate on scroll
-    const animatedElements = document.querySelectorAll(
-        '.section-header, .about-text, .skills-container, ' +
-        '.project-card, .timeline-item, .achievement-item, ' +
-        '.education-card, .contact-item, .contact-form'
-    );
-
-    animatedElements.forEach(element => {
-        // Add a generic 'fade-in' class or specific animation classes based on element type
-        // For example, project cards can slide in from left/right
-        if (element.classList.contains('project-card') || element.classList.contains('education-card') || element.classList.contains('contact-item')) {
-            // Determine if it's left or right based on its position in the grid/flex
-            const index = Array.from(element.parentNode.children).indexOf(element);
-            if (index % 2 === 0) {
-                element.classList.add('slide-in-left');
-            } else {
-                element.classList.add('slide-in-right');
-            }
-        } else if (element.classList.contains('stat-item') || element.classList.contains('achievement-item')) {
-            element.classList.add('scale-in');
-        } else {
-            element.classList.add('fade-in');
-        }
-        observer.observe(element);
+    document.querySelectorAll('.animate-fadeIn, .animate-slideInLeft, .animate-slideInRight, .animate-scaleIn, .animate-fadeInUp').forEach(el => {
+        observer.observe(el);
     });
 });
-
 
 // Project Filtering
 filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-
-        // Update active button
+        const filter = button.dataset.filter;
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-
-        // Filter projects with animation
         projectCards.forEach(card => {
-            const category = card.getAttribute('data-category');
-
-            if (filter === 'all' || category === filter) {
-                card.style.display = 'block'; // Ensure it's visible before animating
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 100); // Small delay for display block to take effect
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.display = 'none'; // Hide after animation
-                }, 300);
-            }
+            const category = card.dataset.category;
+            const matches = (filter === 'all' || category === filter);
+            card.style.display = matches ? 'block' : 'none';
         });
     });
 });
 
-// Contact Form Handling (Client-side simulation)
-contactForm?.addEventListener('submit', async (e) => {
-    e.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const formButton = contactForm.querySelector('button[type="submit"]');
-    const originalText = formButton.innerHTML;
-
-    // Show loading state
-    formButton.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin ml-2"></i>';
-    formButton.disabled = true;
-
-    // --- Backend Integration Placeholder ---
-    // To make this form truly functional, you'll need a backend.
-    // Here's how you might integrate with a serverless function (e.g., Netlify Functions, AWS Lambda, Google Cloud Functions):
-    /*
-    try {
-        const response = await fetch('/.netlify/functions/send-email', { // Replace with your actual endpoint
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.success) {
-            showNotification('Message sent successfully!', 'success');
-            contactForm.reset();
-        } else {
-            showNotification(result.message || 'Failed to send message. Please try again.', 'error');
-        }
-    } catch (error) {
-        console.error('Error submitting form:', error);
-        showNotification('An error occurred. Please try again.', 'error');
-    } finally {
-        // Reset button state regardless of success or failure
-        formButton.innerHTML = originalText;
-        formButton.disabled = false;
-    }
-    */
-
-    // Simulate form submission for now (remove this block when integrating backend)
-    setTimeout(() => {
-        showNotification('Message sent successfully! (Simulated)', 'success');
-        contactForm.reset();
-        formButton.innerHTML = originalText;
-        formButton.disabled = false;
-    }, 2000);
-});
+// --- Interactive Features ---
 
 // Notification System
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = `notification notification--${type}`;
-    notification.innerHTML = `
-        <div class="notification-content flex items-center gap-4">
-            <span>${message}</span>
-            <button class="notification-close text-xl leading-none">&times;</button>
-        </div>
-    `;
-
+    notification.innerHTML = `<span>${message}</span><button class="notification-close">&times;</button>`;
     document.body.appendChild(notification);
+    setTimeout(() => notification.classList.add('show'), 10);
+    const close = () => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    };
+    notification.querySelector('.notification-close').addEventListener('click', close);
+    setTimeout(close, 5000);
+}
 
-    // Animate in
+// Contact Form Simulation
+contactForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const originalHtml = btn.innerHTML;
+    btn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin ml-2"></i>';
+    btn.disabled = true;
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-
-    // Close button
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    });
-
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) { // Check if notification is still in DOM
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
-        }
-    }, 5000);
-}
-
-// Enhanced Particle System
-function initParticles() {
-    const particleContainer = document.querySelector('.particles');
-    if (!particleContainer) return;
-
-    const particleCount = 50; // Number of particles
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'floating-particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 4 + 2}px; /* Random size between 2px and 6px */
-            height: ${Math.random() * 4 + 2}px;
-            background: rgba(16, 185, 129, ${Math.random() * 0.5 + 0.2}); /* Semi-transparent emerald green */
-            border-radius: 50%;
-            left: ${Math.random() * 100}%; /* Random horizontal position */
-            top: ${Math.random() * 100}%; /* Random vertical position */
-            animation: floatParticle ${Math.random() * 10 + 10}s linear infinite; /* Random animation duration */
-            animation-delay: ${Math.random() * 5}s; /* Random animation delay */
-        `;
-        particleContainer.appendChild(particle);
-    }
-}
-
-// Initialize particles on DOM content loaded
-document.addEventListener('DOMContentLoaded', initParticles);
-
-// Skill Item Hover Effects (retained from original CSS, but JS can enhance)
-const skillItems = document.querySelectorAll('.skill-item');
-skillItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        item.style.transform = 'translateY(-2px) scale(1.05)';
-        item.style.boxShadow = '0 10px 25px rgba(16, 185, 129, 0.3)'; // Emerald shadow
-    });
-
-    item.addEventListener('mouseleave', () => {
-        item.style.transform = 'translateY(0) scale(1)';
-        item.style.boxShadow = 'none';
-    });
+        showNotification('Message sent successfully! (Simulated)', 'success');
+        contactForm.reset();
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+    }, 2000);
 });
-
-// Parallax Effect for Hero Section geometric shapes
-let tickingParallax = false;
-function updateParallax() {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.geometric-shapes .shape');
-
-    parallaxElements.forEach((element, index) => {
-        const speed = (index + 1) * 0.05; // Reduced speed for subtlety
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-
-    tickingParallax = false;
-}
-
-function requestTickParallax() {
-    if (!tickingParallax) {
-        requestAnimationFrame(updateParallax);
-        tickingParallax = true;
-    }
-}
-window.addEventListener('scroll', requestTickParallax);
-
-
-// Copy to Clipboard Functionality
-function copyToClipboard(text) {
-    // Use execCommand for broader compatibility in iframes
-    const tempInput = document.createElement('textarea');
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    try {
-        document.execCommand('copy');
-        showNotification('Copied to clipboard!', 'success');
-    } catch (err) {
-        console.error('Failed to copy text: ', err);
-        showNotification('Failed to copy text. Please copy manually.', 'error');
-    } finally {
-        document.body.removeChild(tempInput);
-    }
-}
-
-// Add click to copy for contact info
-const contactLinks = document.querySelectorAll('.contact-link');
-contactLinks.forEach(link => {
-    // Only add listener if it's an email or phone link
-    if (link.href.startsWith('mailto:') || link.href.startsWith('tel:')) {
-        link.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent default mailto/tel behavior
-            const textToCopy = link.textContent.trim(); // Get the visible text
-            copyToClipboard(textToCopy);
-        });
-    }
-});
-
-// Animate Numbers/Stats
-function animateNumbers() {
-    const numbers = document.querySelectorAll('.stat-number');
-
-    numbers.forEach(number => {
-        const target = parseInt(number.textContent); // Get the number part
-        const hasPlus = number.textContent.includes('+'); // Check for '+'
-        const increment = target / 100; // Increment step
-        let current = 0;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            number.textContent = Math.floor(current) + (hasPlus ? '+' : '');
-        }, 20); // Update every 20ms
-    });
-}
-
-// Trigger number animation when stats section is visible
-const statsSection = document.querySelector('.about-stats');
-if (statsSection) {
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateNumbers();
-                statsObserver.unobserve(entry.target); // Stop observing after animation
-            }
-        });
-    }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
-
-    statsObserver.observe(statsSection);
-}
 
 // Dynamic Copyright Year
 if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
 }
 
-// Smooth scrolling for all internal links (re-checking to ensure it works with fixed header)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offsetTop = target.offsetTop - (nav ? nav.offsetHeight : 0); // Account for fixed navbar
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+// --- Gemini API Integrations ---
 
-// Add loading animation to buttons (ripple effect)
-const buttons = document.querySelectorAll('.btn');
-buttons.forEach(button => {
-    button.addEventListener('click', function(e) {
-        // Create ripple element
-        const ripple = document.createElement('span');
-        ripple.classList.add('ripple');
-
-        // Get click position relative to the button
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - (size / 2);
-        const y = e.clientY - rect.top - (size / 2);
-
-        // Set ripple styles
-        ripple.style.width = ripple.style.height = `${size}px`;
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-        ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-        ripple.style.borderRadius = '50%';
-        ripple.style.position = 'absolute';
-        ripple.style.transform = 'scale(0)';
-        ripple.style.opacity = '1';
-        ripple.style.pointerEvents = 'none';
-        ripple.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out'; // Use transition for animation
-
-        // Append to button
-        this.appendChild(ripple);
-
-        // Trigger animation
-        setTimeout(() => {
-            ripple.style.transform = 'scale(4)';
-            ripple.style.opacity = '0';
-        }, 10); // Small delay to ensure styles are applied before transition
-
-        // Remove ripple after animation
-        ripple.addEventListener('transitionend', () => {
-            ripple.remove();
-        });
-    });
-});
-
-// Easter egg - Konami Code
-let konamiCode = [];
-const konamiSequence = [
-    'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-    'KeyB', 'KeyA'
-];
-
-document.addEventListener('keydown', (e) => {
-    konamiCode.push(e.code);
-    if (konamiCode.length > konamiSequence.length) {
-        konamiCode.shift(); // Keep array length fixed
-    }
-
-    if (konamiCode.join('') === konamiSequence.join('')) {
-        showNotification('🎉 Easter egg activated! You found the Konami Code!', 'success');
-
-        // Add special effect (rainbow animation)
-        document.body.style.animation = 'rainbow 2s ease-in-out';
-        setTimeout(() => {
-            document.body.style.animation = ''; // Remove animation after it completes
-        }, 2000);
-    }
-});
-
-// --- Gemini API Integration: Project Description Generator ---
-
-// Function to show the modal
-function showProjectDescriptionModal() {
-    if (projectDescriptionModal) {
-        projectDescriptionModal.classList.remove('hidden');
-        setTimeout(() => {
-            projectDescriptionModal.classList.add('show');
-        }, 10); // Small delay for transition
-    }
-}
-
-// Function to hide the modal
-function hideProjectDescriptionModal() {
-    if (projectDescriptionModal) {
-        projectDescriptionModal.classList.remove('show');
-        setTimeout(() => {
-            projectDescriptionModal.classList.add('hidden');
-        }, 300); // Match CSS transition duration
-    }
-}
-
-// Event listener for modal close button
-modalCloseBtn?.addEventListener('click', hideProjectDescriptionModal);
-
-// Close modal when clicking outside content
-projectDescriptionModal?.addEventListener('click', (e) => {
-    if (e.target === projectDescriptionModal) {
-        hideProjectDescriptionModal();
-    }
-});
-
-// Function to generate project description using Gemini API
+// 1. Project Description Generator
 async function generateProjectDescription(projectTitle, currentDescription) {
-    if (!modalProjectTitle || !modalProjectDescription || !modalLoadingSpinner) return;
-
-    showProjectDescriptionModal();
+    if (!projectDescriptionModal) return;
+    
+    projectDescriptionModal.classList.remove('hidden');
+    setTimeout(() => projectDescriptionModal.classList.add('show'), 10);
     modalProjectTitle.textContent = projectTitle;
-    modalProjectDescription.innerHTML = ''; // Clear previous content
-    modalLoadingSpinner.classList.remove('hidden'); // Show spinner
+    modalProjectDescription.innerHTML = '';
+    modalLoadingSpinner.classList.remove('hidden');
 
-    const prompt = `Expand on the following project idea, providing a more detailed description, potential features, and the impact it could have.
+    const prompt = `You are a tech project analyst. Based on the following information, generate a detailed and professional project overview.
+    
     Project Title: "${projectTitle}"
-    Current Short Description: "${currentDescription}"
+    Short Description: "${currentDescription}"
 
-    Please provide a detailed, engaging description (around 150-250 words) that elaborates on the project's purpose, key functionalities, and its value proposition. Structure it with a clear introduction, body, and conclusion.`;
-
-    let chatHistory = [];
-    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-
-    const payload = { contents: chatHistory };
-    const apiKey = ""; // Canvas will automatically provide the API key at runtime
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    Your response should be structured in markdown format with the following sections:
+    - **Overview:** A more detailed paragraph expanding on the short description.
+    - **Key Features:** A bulleted list of 3-5 potential or existing key features.
+    - **Potential Impact:** A short paragraph on the value or impact this project could have.`;
 
     try {
-        console.log("Attempting to call Gemini API with prompt:", prompt);
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Gemini API error response:", response.status, errorData);
-            modalProjectDescription.textContent = `Error: ${errorData.error?.message || 'Failed to get a valid response from API.'}`;
-            showNotification('Failed to generate description. API error.', 'error');
-            return;
-        }
-
-        const result = await response.json();
-        console.log("Gemini API raw result:", result);
-
-        if (result.candidates && result.candidates.length > 0 &&
-            result.candidates[0].content && result.candidates[0].content.parts &&
-            result.candidates[0].content.parts.length > 0) {
-            const text = result.candidates[0].content.parts[0].text;
-            modalProjectDescription.innerHTML = text.replace(/\n/g, '<br>'); // Display text, convert newlines to <br>
-            showNotification('Description generated successfully!', 'success');
-        } else {
-            modalProjectDescription.textContent = "Could not generate description. The API response was empty or malformed.";
-            showNotification('Failed to generate description. Empty response.', 'error');
-            console.error("Gemini API response structure unexpected or empty content:", result);
-        }
+        const text = await callGemini(prompt);
+        // A simple markdown to HTML converter
+        let html = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+            .replace(/\* (.*?)\n/g, '<li class="ml-4 list-disc">$1</li>') // List items
+            .replace(/\n/g, '<br>'); // Newlines
+        modalProjectDescription.innerHTML = html;
     } catch (error) {
-        modalProjectDescription.textContent = "Error connecting to the Gemini API. Please check your network or try again later.";
-        showNotification('Network error. Could not reach API.', 'error');
-        console.error("Error calling Gemini API:", error);
+        modalProjectDescription.textContent = `Error: ${error.message}`;
+        showNotification('Failed to generate description.', 'error');
     } finally {
-        modalLoadingSpinner.classList.add('hidden'); // Hide spinner
+        modalLoadingSpinner.classList.add('hidden');
     }
 }
 
-// Add event listeners to all "Generate Description" buttons
 generateDescriptionButtons.forEach(button => {
     button.addEventListener('click', () => {
-        const projectTitle = button.dataset.projectTitle || "Untitled Project";
-        const projectDescription = button.dataset.projectDescription || "";
-        generateProjectDescription(projectTitle, projectDescription);
+        generateProjectDescription(button.dataset.projectTitle, button.dataset.projectDescription);
     });
 });
 
-console.log('🚀 Portfolio loaded successfully!');
-console.log('💡 Try the Konami Code: ↑↑↓↓←→←→BA');
+// Modal closing logic
+function hideProjectDescriptionModal() {
+    if (!projectDescriptionModal) return;
+    projectDescriptionModal.classList.remove('show');
+    setTimeout(() => projectDescriptionModal.classList.add('hidden'), 300);
+}
+modalCloseBtn?.addEventListener('click', hideProjectDescriptionModal);
+projectDescriptionModal?.addEventListener('click', (e) => {
+    if (e.target === projectDescriptionModal) hideProjectDescriptionModal();
+});
+
+
+// 2. PNR Status Checker
+async function checkPnrStatus(pnrNumber) {
+    if (!pnrResultContainer || !pnrSubmitBtn) return;
+    
+    pnrResultContainer.innerHTML = '<div class="flex justify-center items-center"><div class="loader w-8 h-8 border-4 border-lime-500 border-t-emerald-500 rounded-full animate-spin"></div><p class="ml-4">Checking PNR status...</p></div>';
+    pnrResultContainer.classList.remove('hidden');
+    pnrSubmitBtn.disabled = true;
+
+    const prompt = `Generate a fictional but realistic Indian Railways PNR status for PNR number ${pnrNumber}. The journey should be between two major Indian cities.`;
+    const schema = {
+        type: "OBJECT",
+        properties: {
+            pnrNumber: { type: "STRING" },
+            trainName: { type: "STRING" },
+            trainNumber: { type: "STRING" },
+            journeyDate: { type: "STRING" },
+            fromStation: { type: "STRING" },
+            toStation: { type: "STRING" },
+            boardingStation: { type: "STRING" },
+            "class": { type: "STRING" },
+            chartPrepared: { type: "BOOLEAN" },
+            passengers: {
+                type: "ARRAY",
+                items: {
+                    type: "OBJECT",
+                    properties: {
+                        name: { type: "STRING" },
+                        bookingStatus: { type: "STRING" },
+                        currentStatus: { type: "STRING" }
+                    }
+                }
+            }
+        }
+    };
+
+    try {
+        const jsonText = await callGemini(prompt, schema);
+        const data = JSON.parse(jsonText);
+        renderPnrResult(data);
+    } catch (error) {
+        pnrResultContainer.innerHTML = `<p class="text-red-400 text-center">Could not fetch PNR status. ${error.message}</p>`;
+        showNotification('Failed to check PNR status.', 'error');
+    } finally {
+        pnrSubmitBtn.disabled = false;
+    }
+}
+
+function renderPnrResult(data) {
+    const passengersHtml = data.passengers.map(p => `
+        <div class="grid grid-cols-3 gap-4 py-2 border-b border-gray-700 last:border-b-0">
+            <span>${p.name}</span>
+            <span class="text-center">${p.bookingStatus}</span>
+            <span class="text-center font-bold ${p.currentStatus.startsWith('CNF') ? 'text-green-400' : 'text-yellow-400'}">${p.currentStatus}</span>
+        </div>
+    `).join('');
+
+    pnrResultContainer.innerHTML = `
+        <div class="pnr-header flex justify-between items-center mb-4 pb-4 border-b border-gray-600">
+            <div>
+                <h4 class="text-xl font-bold text-emerald-400">${data.trainName} (${data.trainNumber})</h4>
+                <p class="text-sm text-gray-400">${data.fromStation} to ${data.toStation}</p>
+            </div>
+            <div class="text-right">
+                <p class="text-sm text-gray-400">Journey Date</p>
+                <p class="font-semibold">${data.journeyDate}</p>
+            </div>
+        </div>
+        <div class="pnr-body">
+             <div class="grid grid-cols-3 gap-4 font-semibold text-gray-300 mb-2">
+                <span>Passenger</span>
+                <span class="text-center">Booking Status</span>
+                <span class="text-center">Current Status</span>
+            </div>
+            ${passengersHtml}
+        </div>
+        <div class="pnr-footer mt-4 pt-4 border-t border-gray-600 text-center text-sm text-gray-400">
+            Charting Status: <span class="font-semibold ${data.chartPrepared ? 'text-green-400' : 'text-red-400'}">${data.chartPrepared ? 'Chart Prepared' : 'Chart Not Prepared'}</span>
+        </div>
+    `;
+}
+
+pnrSubmitBtn?.addEventListener('click', () => {
+    const pnr = pnrInput.value.trim();
+    if (pnr.length === 10 && /^\d+$/.test(pnr)) {
+        checkPnrStatus(pnr);
+    } else {
+        showNotification('Please enter a valid 10-digit PNR number.', 'error');
+        pnrResultContainer.innerHTML = `<p class="text-red-400 text-center">Invalid PNR number.</p>`;
+        pnrResultContainer.classList.remove('hidden');
+    }
+});
+
+
+// Generic Gemini API Caller Function
+async function callGemini(prompt, jsonSchema = null) {
+    let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+    const payload = { contents: chatHistory };
+
+    if (jsonSchema) {
+        payload.generationConfig = {
+            responseMimeType: "application/json",
+            responseSchema: jsonSchema,
+        };
+    }
+
+    const apiKey = ""; // Provided by Canvas at runtime
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || 'API request failed');
+    }
+
+    const result = await response.json();
+
+    if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+        return result.candidates[0].content.parts[0].text;
+    } else {
+        throw new Error('Received an empty or malformed response from the API.');
+    }
+}
+
+console.log('🚀 Portfolio loaded successfully with Gemini features!');
