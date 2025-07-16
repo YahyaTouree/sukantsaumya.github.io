@@ -1,518 +1,251 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sukant Saumya - Flutter Developer & CS Student</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Sukant Saumya - Software Developer</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using Inter as the primary font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="font-inter bg-gradient-to-br from-gray-900 via-indigo-950 to-blue-950 text-white overflow-x-hidden scroll-smooth">
-    <!-- Loading Screen -->
-    <div class="loading fixed inset-0 flex items-center justify-center z-[9999] bg-gradient-to-br from-gray-900 via-indigo-950 to-blue-950 transition-opacity duration-500">
-        <div class="loader w-16 h-16 border-4 border-emerald-500 border-t-lime-300 rounded-full animate-spin"></div>
-    </div>
+<body class="antialiased">
 
-    <!-- Navigation -->
-    <nav class="nav fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-95 backdrop-blur-md border-b border-gray-700 transition-all duration-300">
-        <div class="nav-container max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
-            <div class="nav-brand text-2xl font-bold flex items-center gap-2">
-                <span class="brand-text bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text shadow-emerald-500/50">Sukant</span>
-                <span class="japanese-neon-text text-xl font-mono">スカント</span>
-            </div>
-            <ul class="nav-menu hidden md:flex space-x-8">
-                <li><a href="#home" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Home</a></li>
-                <li><a href="#about" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">About</a></li>
-                <li><a href="#projects" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Projects</a></li>
-                <li><a href="#experience" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Experience</a></li>
-                <li><a href="#tools" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Tools</a></li>
-                <li><a href="#contact" class="nav-link text-white hover:text-emerald-400 transition-colors duration-300 relative overflow-hidden py-2 px-4 rounded-lg">Contact</a></li>
-            </ul>
-            <div class="nav-toggle flex-col justify-center items-center md:hidden cursor-pointer space-y-1">
-                <span class="block w-6 h-0.5 bg-emerald-400 transition-all duration-300"></span>
-                <span class="block w-6 h-0.5 bg-emerald-400 transition-all duration-300"></span>
-                <span class="block w-6 h-0.5 bg-emerald-400 transition-all duration-300"></span>
-            </div>
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold font-serif flex items-center gap-3">
+                <span>Sukant Saumya</span>
+                <span class="neon-text text-3xl">スカント</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="hover:text-indigo-400 transition-colors">About</a>
+                <a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a>
+                <a href="#contact" class="btn btn-secondary px-6 py-2">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden p-2">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
         </div>
-    </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 backdrop-blur-sm">
+            <a href="#about" class="block text-center py-3 px-4 hover:bg-gray-800">About</a>
+            <a href="#projects" class="block text-center py-3 px-4 hover:bg-gray-800">Projects</a>
+            <a href="#contact" class="block text-center py-3 px-4 hover:bg-gray-800">Contact</a>
+        </div>
+    </header>
 
-    <!-- Mobile Navigation Menu (hidden by default) -->
-    <div class="mobile-nav-menu fixed top-16 right-0 w-full h-screen bg-gray-900 bg-opacity-95 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-6 transform translate-x-full transition-transform duration-300 md:hidden">
-        <a href="#home" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Home</a>
-        <a href="#about" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">About</a>
-        <a href="#projects" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Projects</a>
-        <a href="#experience" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Experience</a>
-        <a href="#tools" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Tools</a>
-        <a href="#contact" class="nav-link text-white text-2xl hover:text-emerald-400 transition-colors duration-300">Contact</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero min-h-screen flex items-center justify-center relative px-4 overflow-hidden">
-        <div class="hero-background absolute inset-0 z-0">
-            <div class="particles absolute inset-0 overflow-hidden"></div>
-            <div class="geometric-shapes absolute inset-0 overflow-hidden">
-                <div class="shape shape-1 absolute bg-gradient-to-br from-emerald-400 to-teal-600 rounded-full opacity-10 animate-float" style="top: 20%; left: 10%; width: 80px; height: 80px; animation-delay: 0s;"></div>
-                <div class="shape shape-2 absolute bg-gradient-to-br from-lime-500 to-green-500 transform rotate-45 opacity-10 animate-float" style="top: 60%; right: 10%; width: 60px; height: 60px; animation-delay: 2s;"></div>
-                <div class="shape shape-3 absolute bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl opacity-10 animate-float" style="bottom: 20%; left: 20%; width: 100px; height: 100px; animation-delay: 4s;"></div>
-                <div class="shape shape-4 absolute bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-10 animate-float" style="top: 30%; right: 30%; width: 40px; height: 40px; animation-delay: 1s;"></div>
-            </div>
-        </div>
-        <div class="hero-content max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center z-10 py-20 md:py-0">
-            <div class="hero-text text-center md:text-left animate-slideInLeft">
-                <h1 class="hero-title text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
-                    <span class="title-line block opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">Hi, I'm</span>
-                    <span class="title-line name-gradient block bg-gradient-to-r from-emerald-400 via-teal-600 to-lime-500 text-transparent bg-clip-text bg-[length:300%_300%] animate-gradientShift" style="animation-delay: 0.4s;">Sukant Saumya</span>
-                </h1>
-                <div class="hero-subtitle text-xl md:text-2xl h-16 mb-6 font-mono text-emerald-400">
-                    <span class="typing-text"></span>
-                    <span class="cursor animate-blink">|</span>
-                </div>
-                <p class="hero-description text-lg leading-relaxed mb-8 opacity-0 animate-fadeIn" style="animation-delay: 0.6s;">
-                    A dedicated Computer Science student passionate about mobile application development using Flutter. 
-                    I create innovative solutions with a focus on user experience and functionality.
-                </p>
-                <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center md:justify-start opacity:0 animate-fadeIn" style="animation-delay: 0.8s;">
-                    <a href="#projects" class="btn btn-primary bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group animate-pulse">
-                        <span class="relative z-10">View My Work</span>
-                        <i class="fas fa-arrow-right ml-2 relative z-10"></i>
-                        <span class="absolute inset-0 bg-gradient-to-r from-teal-600 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    </a>
-                    <a href="#contact" class="btn btn-outline border-2 border-emerald-400 text-emerald-400 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-400 hover:text-white transition-all duration-300 relative overflow-hidden group animate-pulse">
-                        <span class="relative z-10">Let's Connect</span>
-                        <i class="fas fa-envelope ml-2 relative z-10"></i>
-                        <span class="absolute inset-0 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image flex justify-center animate-slideInRight">
-                <div class="image-container relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Coding on a laptop" class="w-full h-full object-cover rounded-full shadow-2xl relative z-10">
-                    <div class="image-border absolute inset-[-10px] border-4 border-transparent rounded-full bg-gradient-to-br from-emerald-400 via-teal-600 to-lime-500 bg-[length:300%_300%] animate-rotateBorder z-0"></div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-emerald-400 text-sm animate-bounce">
-            <div class="mouse w-6 h-10 border-2 border-emerald-400 rounded-xl relative">
-                <div class="wheel w-1 h-2 bg-emerald-400 rounded-sm absolute top-1/4 left-1/2 -translate-x-1/2 animate-scroll"></div>
-            </div>
-            <span>Scroll Down</span>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about py-16 md:py-24 bg-gradient-to-br from-gray-900 to-blue-950">
-        <div class="container max-w-6xl mx-auto px-4">
-            <div class="section-header text-center mb-16 animate-fadeIn">
-                <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text">About Me</h2>
-                <p class="section-subtitle text-lg text-gray-300">Get to know me better</p>
-            </div>
-            <div class="about-content grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
-                <div class="about-text animate-slideInLeft">
-                    <p class="about-description text-lg leading-relaxed mb-8 text-gray-200">
-                        A dedicated student pursuing a BTech in Computer Science with a strong foundation in software development and a passion for mobile application development using Flutter. Proficient in various programming languages, tools, and frameworks with hands-on project experience.
+    <main class="container mx-auto px-6 pt-32">
+        
+        <!-- Hero Section -->
+        <section id="home" class="min-h-[80vh] flex items-center fade-in">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="tag">Flutter & Python Developer</span>
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight">Crafting Digital Solutions that Perform.</h1>
+                    <p class="text-lg text-slate-400">
+                        A dedicated BTech student with a strong foundation in software development and a passion for creating intuitive, high-performance mobile applications. Let's build something amazing together.
                     </p>
-                    <div class="about-stats grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        <div class="stat-item text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-lg animate-scaleIn">
-                            <div class="stat-number text-4xl font-bold text-emerald-400 mb-2">3+</div>
-                            <div class="stat-label text-gray-300 text-sm">Projects</div>
-                        </div>
-                        <div class="stat-item text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-lg animate-scaleIn" style="animation-delay: 0.1s;">
-                            <div class="stat-number text-4xl font-bold text-emerald-400 mb-2">2+</div>
-                            <div class="stat-label text-gray-300 text-sm">Years Experience</div>
-                        </div>
-                        <div class="stat-item text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-lg animate-scaleIn" style="animation-delay: 0.2s;">
-                            <div class="stat-number text-4xl font-bold text-emerald-400 mb-2">7+</div>
-                            <div class="stat-label text-gray-300 text-sm">Technologies</div>
-                        </div>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+                        <a href="#contact" class="btn btn-primary text-lg">Get In Touch</a>
+                        <a href="#projects" class="btn btn-secondary text-lg">View My Work</a>
                     </div>
                 </div>
-                <div class="skills-container animate-slideInRight">
-                    <h3 class="skills-title text-2xl font-bold mb-6 text-emerald-400">Technical Skills</h3>
-                    <div class="skills-grid grid gap-6">
-                        <div class="skill-category">
-                            <h4 class="text-xl font-semibold mb-4 text-lime-400">Languages</h4>
-                            <div class="skill-list flex flex-wrap gap-4">
-                                <div class="skill-item flex items-center gap-2 p-3 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-md">
-                                    <i class="fab fa-python text-emerald-400 text-lg"></i>
-                                    <span class="text-white">Python</span>
-                                </div>
-                                <div class="skill-item flex items-center gap-2 p-3 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-md">
-                                    <i class="fas fa-mobile-alt text-emerald-400 text-lg"></i>
-                                    <span class="text-white">Dart</span>
-                                </div>
-                                <div class="skill-item flex items-center gap-2 p-3 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-md">
-                                    <i class="fab fa-flutter text-emerald-400 text-lg"></i>
-                                    <span class="text-white">Flutter</span>
-                                </div>
-                                <div class="skill-item flex items-center gap-2 p-3 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-md">
-                                    <i class="fab fa-java text-emerald-400 text-lg"></i>
-                                    <span class="text-white">Java</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h4 class="text-xl font-semibold mb-4 text-lime-400">Tools & Frameworks</h4>
-                            <div class="skill-list flex flex-wrap gap-4">
-                                <div class="skill-item flex items-center gap-2 p-3 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-md">
-                                    <i class="fab fa-git-alt text-emerald-400 text-lg"></i>
-                                    <span class="text-white">Git</span>
-                                </div>
-                                <div class="skill-item flex items-center gap-2 p-3 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-md">
-                                    <i class="fas fa-code text-emerald-400 text-lg"></i>
-                                    <span>VS Code</span>
-                                </div>
-                                <div class="skill-item flex items-center gap-2 p-3 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-md">
-                                    <i class="fas fa-mobile-alt text-emerald-400 text-lg"></i>
-                                    <span>Android Studio</span>
-                                </div>
-                                <div class="skill-item flex items-center gap-2 p-3 bg-gray-800 rounded-xl border border-gray-700 hover:bg-emerald-900 hover:border-emerald-700 transition-all duration-300 shadow-md">
-                                    <i class="fas fa-cube text-emerald-400 text-lg"></i>
-                                    <span>OpenGL</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="hidden md:block relative">
+                    <div class="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl"></div>
+                    <div class="relative w-full h-full flex items-center justify-center">
+                         <svg class="w-full h-auto text-indigo-400" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path fill="url(#gradient)" d="M85.1,-27.2C85.5,-12.3,73.9,7.6,60.1,23.3C46.3,39,30.3,50.5,13.6,52.8C-3,55.1,-20.4,48.2,-36.8,36.5C-53.2,24.8,-68.6,8.3,-70.5,-10.8C-72.4,-29.9,-60.8,-51.6,-44.7,-61.7C-28.6,-71.8,-8,-70.3,10.6,-63.9C29.3,-57.5,56,-46.2,70.1,-37.1C78.1,-32.1,84.7,-29.2,85.1,-27.2Z" transform="translate(10 20) scale(0.9)">
+                                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="25s" repeatCount="indefinite" />
+                            </path>
+                        </svg>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects py-16 md:py-24 bg-gradient-to-br from-blue-950 to-gray-900">
-        <div class="container max-w-6xl mx-auto px-4">
-            <div class="section-header text-center mb-16 animate-fadeIn">
-                <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text">Projects</h2>
-                <p class="section-subtitle text-lg text-gray-300">Some of my recent work</p>
+        <!-- About & Skills (Bento Grid) -->
+        <section id="about" class="py-24">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold">About Me</h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">A glimpse into my skills, experience, and passion for technology.</p>
             </div>
-            <div class="projects-filter flex flex-wrap justify-center gap-4 mb-12">
-                <button class="filter-btn active px-6 py-2 rounded-full border-2 border-transparent bg-gray-800 text-white font-medium hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-600 transition-all duration-300 cursor-pointer" data-filter="all">All</button>
-                <button class="filter-btn px-6 py-2 rounded-full border-2 border-transparent bg-gray-800 text-white font-medium hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-600 transition-all duration-300 cursor-pointer" data-filter="mobile">Mobile App</button>
-                <button class="filter-btn px-6 py-2 rounded-full border-2 border-transparent bg-gray-800 text-white font-medium hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-600 transition-all duration-300 cursor-pointer" data-filter="hardware">Hardware & AI</button>
-                <button class="filter-btn px-6 py-2 rounded-full border-2 border-transparent bg-gray-800 text-white font-medium hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-600 transition-all duration-300 cursor-pointer" data-filter="ai-generated">AI Generated</button>
-            </div>
-            <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative animate-slideInLeft" data-category="hardware">
-                    <div class="project-image h-48 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1620712943543-285f726a8484?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI Vision Concept" class="w-full h-full object-cover">
-                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <a href="https://github.com/sukant-saumya" target="_blank" class="project-link text-white text-3xl p-4 rounded-full bg-emerald-800 bg-opacity-30 hover:bg-opacity-50 transition-all duration-300">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content p-6">
-                        <h3 class="project-title text-xl font-semibold mb-2 text-emerald-400">Visual Read Assist Device</h3>
-                        <p class="project-description text-gray-300 leading-relaxed mb-4">
-                            An innovative device for the visually impaired that converts images to text using OCR and provides real-time auditory output through TTS.
-                        </p>
-                        <div class="project-tech flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag px-3 py-1 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full text-sm text-emerald-300">Raspberry Pi 4</span>
-                            <span class="tech-tag px-3 py-1 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full text-sm text-emerald-300">Python</span>
-                            <span class="tech-tag px-3 py-1 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full text-sm text-emerald-300">Tesseract OCR</span>
-                        </div>
-                        <button class="generate-description-btn mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
-                            data-project-title="Visual Read Assist Device"
-                            data-project-description="An innovative device for the visually impaired that converts images to text using OCR and provides real-time auditory output through TTS.">
-                            Generate Description ✨
-                        </button>
-                    </div>
-                </div>
 
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative animate-slideInRight" data-category="mobile">
-                    <div class="project-image h-48 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1576679564263-9f94a8a7c131?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Parking lot with cars" class="w-full h-full object-cover">
-                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <a href="https://github.com/sukant-saumya" target="_blank" class="project-link text-white text-3xl p-4 rounded-full bg-blue-800 bg-opacity-30 hover:bg-opacity-50 transition-all duration-300">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content p-6">
-                        <h3 class="project-title text-xl font-semibold mb-2 text-blue-400">Parking Management System</h3>
-                        <p class="project-description text-gray-300 leading-relaxed mb-4">
-                            A comprehensive mobile app for parking management with real-time spot availability, booking system, and payment integration.
-                        </p>
-                        <div class="project-tech flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag px-3 py-1 bg-blue-900 bg-opacity-30 border border-blue-700 rounded-full text-sm text-blue-300">Flutter</span>
-                            <span class="tech-tag px-3 py-1 bg-blue-900 bg-opacity-30 border border-blue-700 rounded-full text-sm text-blue-300">Firebase</span>
-                            <span class="tech-tag px-3 py-1 bg-blue-900 bg-opacity-30 border border-blue-700 rounded-full text-sm text-blue-300">Google Maps API</span>
-                        </div>
-                        <button class="generate-description-btn mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
-                            data-project-title="Parking Management System"
-                            data-project-description="A comprehensive mobile app for parking management with real-time spot availability, booking system, and payment integration.">
-                            Generate Description ✨
-                        </button>
+            <div class="bento-grid">
+                <div class="bento-item col-span-2 fade-in">
+                    <div class="flex items-center gap-4 mb-4"><i data-feather="user" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Who I Am</h3></div>
+                    <p class="text-slate-400">I am a Computer Science student at Vellore Institute of Technology, deeply passionate about turning complex problems into elegant software solutions. My journey in tech is driven by a curiosity to learn and a desire to build applications that make a difference.</p>
+                </div>
+                <div class="bento-item col-span-2 fade-in" style="transition-delay: 100ms;">
+                    <div class="flex items-center gap-4 mb-4"><i data-feather="code" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Technical Skills</h3></div>
+                    <div class="space-y-3">
+                        <div><h4 class="font-semibold text-white">Languages:</h4><p class="text-slate-400">Python, Dart, Flutter, Java</p></div>
+                        <div><h4 class="font-semibold text-white">Libraries & Frameworks:</h4><p class="text-slate-400">Python Libraries, OpenGL</p></div>
+                        <div><h4 class="font-semibold text-white">Tools & Utilities:</h4><p class="text-slate-400">Git, VS Code, Neovim, Android Studio, Firebase</p></div>
                     </div>
                 </div>
-
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative animate-slideInLeft" data-category="mobile">
-                    <div class="project-image h-48 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Person wearing headphones" class="w-full h-full object-cover">
-                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <a href="https://github.com/sukant-saumya" target="_blank" class="project-link text-white text-3xl p-4 rounded-full bg-pink-800 bg-opacity-30 hover:bg-opacity-50 transition-all duration-300">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content p-6">
-                        <h3 class="project-title text-xl font-semibold mb-2 text-pink-400">Music Player App</h3>
-                        <p class="project-description text-gray-300 leading-relaxed mb-4">
-                            A feature-rich music player app built with Clean Architecture principles, supporting both online streaming and offline playback.
-                        </p>
-                        <div class="project-tech flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">Flutter</span>
-                            <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">Dart</span>
-                            <span class="tech-tag px-3 py-1 bg-pink-900 bg-opacity-30 border border-pink-700 rounded-full text-sm text-pink-300">Clean Architecture</span>
-                        </div>
-                        <button class="generate-description-btn mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
-                            data-project-title="Music Player App"
-                            data-project-description="A feature-rich music player app built with Clean Architecture principles, supporting both online streaming and offline playback.">
-                            Generate Description ✨
-                        </button>
-                    </div>
+                <div class="bento-item fade-in" style="transition-delay: 200ms;">
+                     <div class="flex items-center gap-4 mb-4"><i data-feather="edit-3" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Technical Writer</h3></div>
+                    <p class="text-slate-400 mb-2">As a Technical Content Writer for <span class="font-semibold text-white">GeeksForGeeks</span>, I craft high-quality articles on various programming topics, ensuring accuracy and clarity for a global audience.</p><span class="text-sm text-slate-500">2023 - Present</span>
                 </div>
-
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative animate-slideInRight" data-category="ai-generated">
-                    <div class="project-image h-48 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI Robot studying" class="w-full h-full object-cover">
-                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <span class="text-white text-xl">AI Generated</span>
-                        </div>
-                    </div>
-                    <div class="project-content p-6">
-                        <h3 class="project-title text-xl font-semibold mb-2 text-yellow-400">AI-Powered Study Buddy</h3>
-                        <p class="project-description text-gray-300 leading-relaxed mb-4">
-                            An intelligent app that offers personalized study plans, generates practice questions, and provides real-time feedback.
-                        </p>
-                        <div class="project-tech flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag px-3 py-1 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-full text-sm text-yellow-300">AI/ML</span>
-                            <span class="tech-tag px-3 py-1 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-full text-sm text-yellow-300">Python</span>
-                            <span class="tech-tag px-3 py-1 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-full text-sm text-yellow-300">Generative AI</span>
-                        </div>
-                        <button class="generate-description-btn mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
-                            data-project-title="AI-Powered Study Buddy"
-                            data-project-description="An intelligent application designed to help students optimize their learning process. It offers personalized study plans, generates practice questions, and provides real-time feedback based on learning patterns.">
-                            Generate Description ✨
-                        </button>
-                    </div>
+                <div class="bento-item fade-in" style="transition-delay: 300ms;">
+                     <div class="flex items-center gap-4 mb-4"><i data-feather="users" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Community Builder</h3></div>
+                    <p class="text-slate-400 mb-2">As a Technical Team Member at the <span class="font-semibold text-white">Google Developer Student Club</span>, I collaborate on projects and events to foster technical education and community growth.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience py-16 md:py-24 bg-gradient-to-br from-gray-900 to-blue-950">
-        <div class="container max-w-6xl mx-auto px-4">
-            <div class="section-header text-center mb-16 animate-fadeIn">
-                <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text">Experience</h2>
-                <p class="section-subtitle text-lg text-gray-300">My professional journey</p>
-            </div>
-            <div class="experience-timeline relative mb-16">
-                <!-- Timeline vertical line -->
-                <div class="absolute left-1/2 md:left-[calc(50%-1px)] top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-400 to-teal-600 transform -translate-x-1/2"></div>
-
-                <div class="timeline-item flex flex-col md:flex-row items-center md:items-start mb-12 last:mb-0">
-                    <div class="timeline-marker absolute md:relative w-5 h-5 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-full z-10 shadow-lg ring-4 ring-emerald-900 ring-opacity-50 top-1/2 md:top-auto transform -translate-y-1/2 md:translate-y-0 md:left-1/2 md:-translate-x-1/2"></div>
-                    <div class="timeline-content w-full md:w-[45%] p-8 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative md:first:ml-auto md:last:mr-auto animate-slideInLeft">
-                        <div class="timeline-header mb-4">
-                            <h3 class="timeline-title text-xl font-semibold text-emerald-400 mb-1">Technical Content Writer</h3>
-                            <span class="timeline-company block font-bold text-lime-400 mb-1">GeeksForGeeks</span>
-                            <span class="timeline-period block text-sm text-gray-400">2023 – Present</span>
-                        </div>
-                        <div class="timeline-description text-gray-300 leading-relaxed">
-                            <p>Create and publish high-quality technical articles on various programming topics and technologies. Collaborate with editors to ensure content accuracy, clarity, and adherence to GeeksForGeeks' standards.</p>
-                        </div>
+                <a href="https://github.com/Sukant-Saumya" target="_blank" rel="noopener noreferrer" class="bento-item flex flex-col justify-between fade-in" style="transition-delay: 400ms;">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4"><i data-feather="github" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">GitHub</h3></div>
+                        <p class="text-slate-400">View my projects, contributions, and coding activity.</p>
                     </div>
-                </div>
-
-                <div class="timeline-item flex flex-col md:flex-row items-center md:items-start mb-12 last:mb-0 md:justify-end">
-                    <div class="timeline-marker absolute md:relative w-5 h-5 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-full z-10 shadow-lg ring-4 ring-emerald-900 ring-opacity-50 top-1/2 md:top-auto transform -translate-y-1/2 md:translate-y-0 md:left-1/2 md:-translate-x-1/2"></div>
-                    <div class="timeline-content w-full md:w-[45%] p-8 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative md:first:ml-auto md:last:mr-auto animate-slideInRight">
-                        <div class="timeline-header mb-4">
-                            <h3 class="timeline-title text-xl font-semibold text-emerald-400 mb-1">Technical Team Member</h3>
-                            <span class="timeline-company block font-bold text-lime-400 mb-1">Google Developers Students Club</span>
-                            <span class="timeline-period block text-sm text-gray-400">2022 – Present</span>
-                        </div>
-                        <div class="timeline-description text-gray-300 leading-relaxed">
-                            <p>Collaborate with team members on various projects and events to promote technical education and community development.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="achievements">
-                <h3 class="achievements-title text-2xl font-bold mb-8 text-emerald-400 text-center">Achievements</h3>
-                <div class="achievements-grid grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="achievement-item flex items-start gap-4 p-6 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-scaleIn">
-                        <div class="achievement-icon text-3xl text-emerald-400 flex-shrink-0">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">Led the development of two successful mobile applications with a focus on user experience and functionality</p>
-                    </div>
-                    <div class="achievement-item flex items-start gap-4 p-6 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-scaleIn" style="animation-delay: 0.1s;">
-                        <div class="achievement-icon text-3xl text-emerald-400 flex-shrink-0">
-                            <i class="fas fa-code-branch"></i>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">Active contributor to open-source projects and collaborative learning</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="education py-16 md:py-24 bg-gradient-to-br from-blue-950 to-gray-900">
-        <div class="container max-w-6xl mx-auto px-4">
-            <div class="section-header text-center mb-16 animate-fadeIn">
-                <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text">Education</h2>
-                <p class="section-subtitle text-lg text-gray-300">My academic background</p>
-            </div>
-            <div class="education-grid grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="education-card flex flex-col sm:flex-row items-center sm:items-start gap-6 p-8 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slideInLeft">
-                    <div class="education-icon text-5xl text-emerald-400 flex-shrink-0">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="education-content text-center sm:text-left">
-                        <h3 class="education-degree text-xl font-semibold text-emerald-400 mb-1">Bachelor of Technology</h3>
-                        <h4 class="education-major text-lg font-medium text-lime-400 mb-1">Computer Science and Engineering (CORE)</h4>
-                        <p class="education-institution text-gray-300 mb-1">Vellore Institute of Technology – AP</p>
-                        <span class="education-period text-sm text-gray-400">Aug 2022 – Jun 2026</span>
-                    </div>
-                </div>
-                <div class="education-card flex flex-col sm:flex-row items-center sm:items-start gap-6 p-8 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slideInRight">
-                    <div class="education-icon text-5xl text-emerald-400 flex-shrink-0">
-                        <i class="fas fa-school"></i>
-                    </div>
-                    <div class="education-content text-center sm:text-left">
-                        <h3 class="education-degree text-xl font-semibold text-emerald-400 mb-1">Secondary Education</h3>
-                        <h4 class="education-major text-lg font-medium text-lime-400 mb-1">X and XII</h4>
-                        <p class="education-institution text-gray-300 mb-1">St. Karen's High School – Patna</p>
-                        <span class="education-period text-sm text-gray-400">Completed</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section id="tools" class="tools py-16 md:py-24 bg-gradient-to-br from-gray-900 to-blue-950">
-        <div class="container max-w-6xl mx-auto px-4">
-            <div class="section-header text-center mb-16 animate-fadeIn">
-                <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text">Fun Tools</h2>
-                <p class="section-subtitle text-lg text-gray-300">A little widget inspired by railway apps</p>
-            </div>
-            <div class="pnr-widget max-w-2xl mx-auto bg-gray-800 rounded-xl border border-gray-700 shadow-lg p-8 animate-scaleIn">
-                <h3 class="text-2xl font-bold text-center text-emerald-400 mb-6">PNR Status Checker</h3>
-                <div class="pnr-form flex flex-col sm:flex-row gap-4 mb-6">
-                    <input type="text" id="pnr-input" class="form-control flex-grow p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all duration-300" placeholder="Enter 10-Digit PNR Number" maxlength="10">
-                    <button id="pnr-submit-btn" class="btn btn-primary bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">Check Status</button>
-                </div>
-                <div id="pnr-result" class="pnr-result-container hidden mt-6 p-6 bg-gray-900 rounded-lg border border-gray-700">
-                    <!-- PNR results will be displayed here -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact py-16 md:py-24 bg-gradient-to-br from-blue-950 to-gray-900">
-        <div class="container max-w-6xl mx-auto px-4">
-            <div class="section-header text-center mb-16 animate-fadeIn">
-                <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-emerald-400 to-teal-600 text-transparent bg-clip-text">Let's Connect</h2>
-                <p class="section-subtitle text-lg text-gray-300">Get in touch with me</p>
-            </div>
-            <div class="contact-content grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-12">
-                <div class="contact-info flex flex-col gap-6">
-                    <div class="contact-item flex items-center gap-4 p-6 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slideInLeft">
-                        <div class="contact-icon text-2xl text-emerald-400 w-12 h-12 bg-emerald-900 bg-opacity-30 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4 class="text-xl font-semibold text-emerald-400 mb-1">Email</h4>
-                            <a href="mailto:14saumya2004@gmail.com" class="contact-link text-white hover:text-emerald-400 transition-colors duration-300">14saumya2004@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item flex items-center gap-4 p-6 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slideInLeft" style="animation-delay: 0.1s;">
-                        <div class="contact-icon text-2xl text-emerald-400 w-12 h-12 bg-emerald-900 bg-opacity-30 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4 class="text-xl font-semibold text-emerald-400 mb-1">Phone</h4>
-                            <a href="tel:+918292087728" class="contact-link text-white hover:text-emerald-400 transition-colors duration-300">+91-8292087728</a>
-                        </div>
-                    </div>
-                    <div class="contact-item flex items-center gap-4 p-6 bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slideInLeft" style="animation-delay: 0.2s;">
-                        <div class="contact-icon text-2xl text-emerald-400 w-12 h-12 bg-emerald-900 bg-opacity-30 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4 class="text-xl font-semibold text-emerald-400 mb-1">Location</h4>
-                            <span class="contact-text text-white">Patna, India</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-lg animate-slideInRight">
-                    <form class="form">
-                        <div class="form-group mb-6">
-                            <input type="text" class="form-control w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all duration-300" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group mb-6">
-                            <input type="email" class="form-control w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all duration-300" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group mb-6">
-                            <input type="text" class="form-control w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all duration-300" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group mb-8">
-                            <textarea class="form-control w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all duration-300" rows="5" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full-width w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
-                            <span class="relative z-10">Send Message</span>
-                            <i class="fas fa-paper-plane ml-2 relative z-10"></i>
-                            <span class="absolute inset-0 bg-gradient-to-r from-teal-600 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="social-links flex justify-center gap-4">
-                <a href="https://linkedin.com/in/sukant-saumya" target="_blank" class="social-link w-12 h-12 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full flex items-center justify-center text-emerald-400 text-xl hover:bg-emerald-800 hover:scale-110 transition-all duration-300">
-                    <i class="fab fa-linkedin"></i>
+                    <div class="flex items-center text-indigo-400 font-semibold mt-4"><span>View Profile</span><i data-feather="arrow-right" class="w-4 h-4 ml-2"></i></div>
                 </a>
-                <a href="https://github.com/sukant-saumya" target="_blank" class="social-link w-12 h-12 bg-emerald-900 bg-opacity-30 border border-emerald-700 rounded-full flex items-center justify-center text-emerald-400 text-xl hover:bg-emerald-800 hover:scale-110 transition-all duration-300">
-                    <i class="fab fa-github"></i>
+                <a href="https://www.linkedin.com/in/sukant-saumya-316238258/" target="_blank" rel="noopener noreferrer" class="bento-item flex flex-col justify-between fade-in" style="transition-delay: 500ms;">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4"><i data-feather="linkedin" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">LinkedIn</h3></div>
+                        <p class="text-slate-400">Connect with me on my professional network.</p>
+                    </div>
+                    <div class="flex items-center text-indigo-400 font-semibold mt-4"><span>View Profile</span><i data-feather="arrow-right" class="w-4 h-4 ml-2"></i></div>
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold">Featured Projects</h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">A selection of my work. Each project is a story of a problem solved.</p>
+            </div>
+
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Project 1: Parking Management System -->
+                <div class="project-card rounded-2xl overflow-hidden fade-in">
+                    <div class="p-8 project-content">
+                        <div class="project-details">
+                            <h3 class="text-3xl font-bold mb-4">Parking Management System</h3>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">Google Maps API</span><span class="tag">Stripe</span>
+                            </div>
+                            <div class="space-y-6 text-slate-300" data-full-text="Challenge: Urban drivers face constant frustration finding available parking. The goal was to create a seamless mobile solution to locate, reserve, and pay for parking spots in real-time, reducing congestion and stress. Process & Contribution: I architected and developed a full-featured Flutter application from the ground up. This involved implementing secure user authentication with Firebase, integrating the Google Maps API for a live view of parking availability, and building a robust booking and payment system with Stripe and PayPal APIs. Outcome & Results: The result is a comprehensive platform that not only helps drivers but also provides an admin panel for parking lot owners to manage spots and bookings efficiently. The app successfully streamlines the entire parking lifecycle, from search to payment.">
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Challenge</h4><p>Urban drivers face constant frustration finding available parking. The goal was to create a seamless mobile solution to locate, reserve, and pay for parking spots in real-time, reducing congestion and stress.</p></div>
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">My Process & Contribution</h4><p>I architected and developed a full-featured Flutter application from the ground up. This involved implementing secure user authentication with Firebase, integrating the Google Maps API for a live view of parking availability, and building a robust booking and payment system with Stripe and PayPal APIs.</p></div>
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Outcome & Results</h4><p>The result is a comprehensive platform that not only helps drivers but also provides an admin panel for parking lot owners to manage spots and bookings efficiently. The app successfully streamlines the entire parking lifecycle, from search to payment.</p></div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <button class="btn btn-gemini w-full generate-summary-btn">
+                                <i data-feather="sparkles" class="w-5 h-5"></i>
+                                Generate AI Summary (TL;DR)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Music Player App -->
+                <div class="project-card rounded-2xl overflow-hidden fade-in" style="transition-delay: 200ms;">
+                    <div class="p-8 project-content">
+                        <div class="project-details">
+                            <h3 class="text-3xl font-bold mb-4">Music Player App</h3>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag">Flutter</span><span class="tag">Clean Architecture</span><span class="tag">Retrofit</span><span class="tag">SQLite</span>
+                            </div>
+                            <div class="space-y-6 text-slate-300" data-full-text="Challenge: To develop a high-performance music player that offers both online streaming and offline playback capabilities, while maintaining a clean, scalable, and maintainable codebase. Process & Contribution: I adopted Clean Architecture principles to ensure a decoupled and testable app structure. I integrated online music APIs using Retrofit for seamless streaming and implemented an SQLite database for robust offline storage and playback. ExoPlayer was utilized for its efficiency and advanced playback features. Outcome & Results: The final product is a feature-rich music application that provides a smooth and reliable user experience. The architectural choices ensure the app is easy to scale and maintain, demonstrating a strong understanding of mobile development best practices.">
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Challenge</h4><p>To develop a high-performance music player that offers both online streaming and offline playback capabilities, while maintaining a clean, scalable, and maintainable codebase.</p></div>
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">My Process & Contribution</h4><p>I adopted Clean Architecture principles to ensure a decoupled and testable app structure. I integrated online music APIs using Retrofit for seamless streaming and implemented an SQLite database for robust offline storage and playback. ExoPlayer was utilized for its efficiency and advanced playback features.</p></div>
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Outcome & Results</h4><p>The final product is a feature-rich music application that provides a smooth and reliable user experience. The architectural choices ensure the app is easy to scale and maintain, demonstrating a strong understanding of mobile development best practices.</p></div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                           <button class="btn btn-gemini w-full generate-summary-btn">
+                                <i data-feather="sparkles" class="w-5 h-5"></i>
+                                Generate AI Summary (TL;DR)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Visual Read Assist Device -->
+                <div class="project-card rounded-2xl overflow-hidden fade-in lg:col-span-2">
+                     <div class="p-8 project-content">
+                        <div class="project-details">
+                            <h3 class="text-3xl font-bold mb-4">Visual Read Assist Device</h3>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag">Python</span><span class="tag">Raspberry Pi</span><span class="tag">OCR</span><span class="tag">TTS</span>
+                            </div>
+                            <div class="space-y-6 text-slate-300" data-full-text="Challenge: To bridge the accessibility gap for visually impaired individuals by creating a portable, affordable device that can read printed text aloud in real-time. Process & Contribution: I engineered a solution using a Raspberry Pi 4 and Pi Camera. I implemented the Tesseract OCR engine for accurate image-to-text conversion and integrated a Text-to-Speech (TTS) module for clear auditory output. A key focus was designing a simple, user-friendly interface with physical controls for playback. Outcome & Results: The project resulted in a functional and effective assistive device that empowers visually impaired users by granting them greater independence. The device provides real-time text-to-speech conversion and includes features for digital backup, showcasing a practical application of embedded systems and AI for social good.">
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Challenge</h4><p>To bridge the accessibility gap for visually impaired individuals by creating a portable, affordable device that can read printed text aloud in real-time.</p></div>
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">My Process & Contribution</h4><p>I engineered a solution using a Raspberry Pi 4 and Pi Camera. I implemented the Tesseract OCR engine for accurate image-to-text conversion and integrated a Text-to-Speech (TTS) module for clear auditory output. A key focus was designing a simple, user-friendly interface with physical controls for playback.</p></div>
+                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Outcome & Results</h4><p>The project resulted in a functional and effective assistive device that empowers visually impaired users by granting them greater independence. The device provides real-time text-to-speech conversion and includes features for digital backup, showcasing a practical application of embedded systems and AI for social good.</p></div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <button class="btn btn-gemini w-full generate-summary-btn">
+                                <i data-feather="sparkles" class="w-5 h-5"></i>
+                                Generate AI Summary (TL;DR)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 text-center fade-in">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold">Get In Touch</h2>
+                <p class="text-slate-400 mt-6 text-lg">
+                    I'm actively seeking placement opportunities and am open to exciting collaborations. If you have a role that you think would be a good fit, or just want to connect, I'd love to hear from you.
+                </p>
+                <div class="mt-10">
+                    <a href="mailto:14saumya2004@gmail.com" class="btn btn-primary text-xl px-12 py-4">
+                        Say Hello
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="footer bg-gray-900 py-8 text-center">
-        <div class="container max-w-6xl mx-auto px-4">
-            <div class="footer-content text-gray-400 text-sm">
-                <p>&copy; <span id="current-year">2024</span> Sukant Saumya. All rights reserved.</p>
-                <p>Built with passion and dedication.</p>
+    <footer class="border-t border-slate-800">
+        <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <p class="text-slate-400">&copy; 2025 Sukant Saumya. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="https://github.com/Sukant-Saumya" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400"><i data-feather="github" class="w-6 h-6"></i></a>
+                <a href="https://www.linkedin.com/in/sukant-saumya-316238258/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400"><i data-feather="linkedin" class="w-6 h-6"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- Project Description Modal -->
-    <div id="project-description-modal" class="modal-overlay hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[10000] p-4">
-        <div class="modal-content bg-gray-800 rounded-xl shadow-2xl w-full max-w-2xl p-8 relative transform scale-95 opacity-0 transition-all duration-300">
-            <button class="modal-close-btn absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
-            <h3 id="modal-project-title" class="text-3xl font-bold text-emerald-400 mb-4"></h3>
-            <div id="modal-project-description" class="text-gray-300 leading-relaxed text-lg max-h-96 overflow-y-auto custom-scrollbar">
-                <!-- Generated description will be inserted here -->
-            </div>
-            <div id="modal-loading-spinner" class="hidden flex justify-center items-center mt-4">
-                <div class="loader w-8 h-8 border-4 border-lime-500 border-t-emerald-500 rounded-full animate-spin"></div>
+    <!-- AI Summary Modal -->
+    <div id="ai-summary-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close-button" class="absolute top-4 right-5 text-gray-400 hover:text-white text-3xl">&times;</button>
+            <h3 id="modal-title" class="text-3xl font-bold mb-4 text-indigo-300">AI-Powered Summary</h3>
+            <div id="modal-body">
+                <!-- Spinner will be shown here -->
+                <!-- Content will be injected here -->
             </div>
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="app.js" defer></script>
 </body>
 </html>
