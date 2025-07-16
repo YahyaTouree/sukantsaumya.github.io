@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
@@ -21,16 +21,24 @@
 </head>
 <body class="antialiased">
 
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress-bar"></div>
+
     <!-- Header / Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-lg">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-xl border-b border-slate-800/50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold font-serif flex items-center gap-3">
-                <span>Sukant Saumya</span>
-                <span class="neon-text text-3xl">スカント</span>
+            <a href="#" class="text-2xl font-bold font-serif flex items-center gap-3 group">
+                <span class="group-hover:text-indigo-400 transition-colors duration-300">Sukant Saumya</span>
+                <span class="neon-text text-3xl group-hover:animate-pulse">スカント</span>
             </a>
             <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="hover:text-indigo-400 transition-colors">About</a>
-                <a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
                 <a href="#contact" class="btn btn-secondary px-6 py-2">Contact</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden p-2">
@@ -41,6 +49,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 backdrop-blur-sm">
             <a href="#about" class="block text-center py-3 px-4 hover:bg-gray-800">About</a>
             <a href="#projects" class="block text-center py-3 px-4 hover:bg-gray-800">Projects</a>
+            <a href="#experience" class="block text-center py-3 px-4 hover:bg-gray-800">Experience</a>
             <a href="#contact" class="block text-center py-3 px-4 hover:bg-gray-800">Contact</a>
         </div>
     </header>
@@ -50,7 +59,7 @@
         <!-- Hero Section -->
         <section id="home" class="min-h-[80vh] flex items-center fade-in">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
+                <div class="space-y-6 z-10">
                     <span class="tag">Flutter & Python Developer</span>
                     <h1 class="text-5xl md:text-7xl font-bold leading-tight">Crafting Digital Solutions that Perform.</h1>
                     <p class="text-lg text-slate-400">
@@ -61,67 +70,96 @@
                         <a href="#projects" class="btn btn-secondary text-lg">View My Work</a>
                     </div>
                 </div>
-                <div class="hidden md:block relative">
-                    <div class="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl"></div>
-                    <div class="relative w-full h-full flex items-center justify-center">
-                         <svg class="w-full h-auto text-indigo-400" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <path fill="url(#gradient)" d="M85.1,-27.2C85.5,-12.3,73.9,7.6,60.1,23.3C46.3,39,30.3,50.5,13.6,52.8C-3,55.1,-20.4,48.2,-36.8,36.5C-53.2,24.8,-68.6,8.3,-70.5,-10.8C-72.4,-29.9,-60.8,-51.6,-44.7,-61.7C-28.6,-71.8,-8,-70.3,10.6,-63.9C29.3,-57.5,56,-46.2,70.1,-37.1C78.1,-32.1,84.7,-29.2,85.1,-27.2Z" transform="translate(10 20) scale(0.9)">
-                                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="25s" repeatCount="indefinite" />
-                            </path>
-                        </svg>
-                    </div>
+                <div id="hero-animation-container" class="hidden md:flex items-center justify-center relative w-full h-96">
+                    <!-- Anime-inspired SVG animation will be injected here by JS -->
                 </div>
             </div>
         </section>
 
-        <!-- About & Skills (Bento Grid) -->
+        <!-- About & Skills Section -->
         <section id="about" class="py-24">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold">About Me</h2>
                 <p class="text-slate-400 mt-4 max-w-2xl mx-auto">A glimpse into my skills, experience, and passion for technology.</p>
             </div>
 
-            <div class="bento-grid">
-                <div class="bento-item col-span-2 fade-in">
-                    <div class="flex items-center gap-4 mb-4"><i data-feather="user" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Who I Am</h3></div>
-                    <p class="text-slate-400">I am a Computer Science student at Vellore Institute of Technology, deeply passionate about turning complex problems into elegant software solutions. My journey in tech is driven by a curiosity to learn and a desire to build applications that make a difference.</p>
+            <div class="grid lg:grid-cols-5 gap-8 items-start">
+                <div class="lg:col-span-2 fade-in">
+                    <img src="https://placehold.co/600x800/1e1e1e/a78bfa?text=Sukant+Saumya" alt="Portrait of Sukant Saumya" class="rounded-2xl w-full h-auto object-cover shadow-2xl shadow-indigo-900/20 hover-lift">
                 </div>
-                <div class="bento-item col-span-2 fade-in" style="transition-delay: 100ms;">
-                    <div class="flex items-center gap-4 mb-4"><i data-feather="code" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Technical Skills</h3></div>
-                    <div class="space-y-3">
-                        <div><h4 class="font-semibold text-white">Languages:</h4><p class="text-slate-400">Python, Dart, Flutter, Java</p></div>
-                        <div><h4 class="font-semibold text-white">Libraries & Frameworks:</h4><p class="text-slate-400">Python Libraries, OpenGL</p></div>
-                        <div><h4 class="font-semibold text-white">Tools & Utilities:</h4><p class="text-slate-400">Git, VS Code, Neovim, Android Studio, Firebase</p></div>
+                <div class="lg:col-span-3 space-y-8">
+                    <div class="bento-item fade-in" style="transition-delay: 100ms;">
+                        <div class="flex items-center gap-4 mb-4"><i data-feather="user" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Who I Am</h3></div>
+                        <p class="text-slate-400">I am a Computer Science student at Vellore Institute of Technology, deeply passionate about turning complex problems into elegant software solutions. My journey in tech is driven by a curiosity to learn and a desire to build applications that make a difference.</p>
+                    </div>
+                    <div class="bento-item fade-in" style="transition-delay: 200ms;">
+                        <div class="flex items-center gap-4 mb-4"><i data-feather="code" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Technical Skills</h3></div>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="skill-tag" data-tooltip="Proficient">Python</span>
+                            <span class="skill-tag" data-tooltip="Proficient">Dart</span>
+                            <span class="skill-tag" data-tooltip="Proficient">Flutter</span>
+                            <span class="skill-tag" data-tooltip="Intermediate">Java</span>
+                            <span class="skill-tag" data-tooltip="Intermediate">OpenGL</span>
+                            <span class="skill-tag" data-tooltip="Advanced">Git</span>
+                            <span class="skill-tag" data-tooltip="Advanced">Firebase</span>
+                        </div>
+                    </div>
+                     <div class="grid md:grid-cols-2 gap-8">
+                        <a href="https://github.com/Sukant-Saumya" target="_blank" rel="noopener noreferrer" class="bento-item flex-col justify-between fade-in" style="transition-delay: 300ms;">
+                            <div class="flex items-center gap-4 mb-4"><i data-feather="github" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">GitHub</h3></div>
+                            <p class="text-slate-400">View my projects, contributions, and coding activity.</p>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sukant-saumya-316238258/" target="_blank" rel="noopener noreferrer" class="bento-item flex-col justify-between fade-in" style="transition-delay: 400ms;">
+                            <div class="flex items-center gap-4 mb-4"><i data-feather="linkedin" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">LinkedIn</h3></div>
+                            <p class="text-slate-400">Connect with me on my professional network.</p>
+                        </a>
                     </div>
                 </div>
-                <div class="bento-item fade-in" style="transition-delay: 200ms;">
-                     <div class="flex items-center gap-4 mb-4"><i data-feather="edit-3" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Technical Writer</h3></div>
-                    <p class="text-slate-400 mb-2">As a Technical Content Writer for <span class="font-semibold text-white">GeeksForGeeks</span>, I craft high-quality articles on various programming topics, ensuring accuracy and clarity for a global audience.</p><span class="text-sm text-slate-500">2023 - Present</span>
-                </div>
-                <div class="bento-item fade-in" style="transition-delay: 300ms;">
-                     <div class="flex items-center gap-4 mb-4"><i data-feather="users" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Community Builder</h3></div>
-                    <p class="text-slate-400 mb-2">As a Technical Team Member at the <span class="font-semibold text-white">Google Developer Student Club</span>, I collaborate on projects and events to foster technical education and community growth.</p>
-                </div>
-                <a href="https://github.com/Sukant-Saumya" target="_blank" rel="noopener noreferrer" class="bento-item flex flex-col justify-between fade-in" style="transition-delay: 400ms;">
-                    <div>
-                        <div class="flex items-center gap-4 mb-4"><i data-feather="github" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">GitHub</h3></div>
-                        <p class="text-slate-400">View my projects, contributions, and coding activity.</p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-24">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold">My Journey</h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">A timeline of my key experiences and education.</p>
+            </div>
+            <div class="timeline-container relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-4 md:left-1/2 w-0.5 h-full bg-slate-700 -translate-x-1/2"></div>
+                
+                <!-- Timeline Item: GeeksForGeeks -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 - Present</span>
+                        <h3 class="text-2xl font-bold">Technical Content Writer</h3>
+                        <p class="text-indigo-400 font-semibold">GeeksForGeeks</p>
+                        <p class="text-slate-400 mt-2">Crafting high-quality technical articles on various programming topics and technologies, ensuring accuracy and clarity for a global audience.</p>
                     </div>
-                    <div class="flex items-center text-indigo-400 font-semibold mt-4"><span>View Profile</span><i data-feather="arrow-right" class="w-4 h-4 ml-2"></i></div>
-                </a>
-                <a href="https://www.linkedin.com/in/sukant-saumya-316238258/" target="_blank" rel="noopener noreferrer" class="bento-item flex flex-col justify-between fade-in" style="transition-delay: 500ms;">
-                    <div>
-                        <div class="flex items-center gap-4 mb-4"><i data-feather="linkedin" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">LinkedIn</h3></div>
-                        <p class="text-slate-400">Connect with me on my professional network.</p>
+                </div>
+                
+                <!-- Timeline Item: GDSC -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - Present</span>
+                        <h3 class="text-2xl font-bold">Technical Team Member</h3>
+                        <p class="text-indigo-400 font-semibold">Google Developer Student Club</p>
+                        <p class="text-slate-400 mt-2">Collaborating on projects and events to foster technical education and community growth at my university.</p>
                     </div>
-                    <div class="flex items-center text-indigo-400 font-semibold mt-4"><span>View Profile</span><i data-feather="arrow-right" class="w-4 h-4 ml-2"></i></div>
-                </a>
+                </div>
+
+                <!-- Timeline Item: VIT-AP -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - 2026</span>
+                        <h3 class="text-2xl font-bold">B.Tech, Computer Science</h3>
+                        <p class="text-indigo-400 font-semibold">Vellore Institute of Technology - AP</p>
+                        <p class="text-slate-400 mt-2">Pursuing my undergraduate degree with a focus on software development, data structures, and algorithms.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -136,6 +174,9 @@
                 
                 <!-- Project 1: Parking Management System -->
                 <div class="project-card rounded-2xl overflow-hidden fade-in">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1576679564263-9f94a8a7c131?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Parking Management System" class="project-image">
+                    </div>
                     <div class="p-8 project-content">
                         <div class="project-details">
                             <h3 class="text-3xl font-bold mb-4">Parking Management System</h3>
@@ -143,15 +184,13 @@
                                 <span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">Google Maps API</span><span class="tag">Stripe</span>
                             </div>
                             <div class="space-y-6 text-slate-300" data-full-text="Challenge: Urban drivers face constant frustration finding available parking. The goal was to create a seamless mobile solution to locate, reserve, and pay for parking spots in real-time, reducing congestion and stress. Process & Contribution: I architected and developed a full-featured Flutter application from the ground up. This involved implementing secure user authentication with Firebase, integrating the Google Maps API for a live view of parking availability, and building a robust booking and payment system with Stripe and PayPal APIs. Outcome & Results: The result is a comprehensive platform that not only helps drivers but also provides an admin panel for parking lot owners to manage spots and bookings efficiently. The app successfully streamlines the entire parking lifecycle, from search to payment.">
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Challenge</h4><p>Urban drivers face constant frustration finding available parking. The goal was to create a seamless mobile solution to locate, reserve, and pay for parking spots in real-time, reducing congestion and stress.</p></div>
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">My Process & Contribution</h4><p>I architected and developed a full-featured Flutter application from the ground up. This involved implementing secure user authentication with Firebase, integrating the Google Maps API for a live view of parking availability, and building a robust booking and payment system with Stripe and PayPal APIs.</p></div>
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Outcome & Results</h4><p>The result is a comprehensive platform that not only helps drivers but also provides an admin panel for parking lot owners to manage spots and bookings efficiently. The app successfully streamlines the entire parking lifecycle, from search to payment.</p></div>
+                                <p>A seamless mobile solution to locate, reserve, and pay for parking spots in real-time, reducing urban congestion and driver stress.</p>
                             </div>
                         </div>
                         <div class="mt-8">
                             <button class="btn btn-gemini w-full generate-summary-btn">
                                 <i data-feather="sparkles" class="w-5 h-5"></i>
-                                Generate AI Summary (TL;DR)
+                                View AI Case Study
                             </button>
                         </div>
                     </div>
@@ -159,6 +198,9 @@
 
                 <!-- Project 2: Music Player App -->
                 <div class="project-card rounded-2xl overflow-hidden fade-in" style="transition-delay: 200ms;">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Music Player App" class="project-image">
+                    </div>
                     <div class="p-8 project-content">
                         <div class="project-details">
                             <h3 class="text-3xl font-bold mb-4">Music Player App</h3>
@@ -166,15 +208,13 @@
                                 <span class="tag">Flutter</span><span class="tag">Clean Architecture</span><span class="tag">Retrofit</span><span class="tag">SQLite</span>
                             </div>
                             <div class="space-y-6 text-slate-300" data-full-text="Challenge: To develop a high-performance music player that offers both online streaming and offline playback capabilities, while maintaining a clean, scalable, and maintainable codebase. Process & Contribution: I adopted Clean Architecture principles to ensure a decoupled and testable app structure. I integrated online music APIs using Retrofit for seamless streaming and implemented an SQLite database for robust offline storage and playback. ExoPlayer was utilized for its efficiency and advanced playback features. Outcome & Results: The final product is a feature-rich music application that provides a smooth and reliable user experience. The architectural choices ensure the app is easy to scale and maintain, demonstrating a strong understanding of mobile development best practices.">
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Challenge</h4><p>To develop a high-performance music player that offers both online streaming and offline playback capabilities, while maintaining a clean, scalable, and maintainable codebase.</p></div>
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">My Process & Contribution</h4><p>I adopted Clean Architecture principles to ensure a decoupled and testable app structure. I integrated online music APIs using Retrofit for seamless streaming and implemented an SQLite database for robust offline storage and playback. ExoPlayer was utilized for its efficiency and advanced playback features.</p></div>
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Outcome & Results</h4><p>The final product is a feature-rich music application that provides a smooth and reliable user experience. The architectural choices ensure the app is easy to scale and maintain, demonstrating a strong understanding of mobile development best practices.</p></div>
+                                <p>A high-performance music player with online streaming and offline playback, built on Clean Architecture principles for scalability.</p>
                             </div>
                         </div>
                         <div class="mt-8">
                            <button class="btn btn-gemini w-full generate-summary-btn">
                                 <i data-feather="sparkles" class="w-5 h-5"></i>
-                                Generate AI Summary (TL;DR)
+                                View AI Case Study
                             </button>
                         </div>
                     </div>
@@ -182,6 +222,9 @@
 
                 <!-- Project 3: Visual Read Assist Device -->
                 <div class="project-card rounded-2xl overflow-hidden fade-in lg:col-span-2">
+                    <div class="project-image-container">
+                         <img src="https://images.unsplash.com/photo-1620712943543-285f726a8484?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Visual Read Assist Device" class="project-image">
+                    </div>
                      <div class="p-8 project-content">
                         <div class="project-details">
                             <h3 class="text-3xl font-bold mb-4">Visual Read Assist Device</h3>
@@ -189,15 +232,13 @@
                                 <span class="tag">Python</span><span class="tag">Raspberry Pi</span><span class="tag">OCR</span><span class="tag">TTS</span>
                             </div>
                             <div class="space-y-6 text-slate-300" data-full-text="Challenge: To bridge the accessibility gap for visually impaired individuals by creating a portable, affordable device that can read printed text aloud in real-time. Process & Contribution: I engineered a solution using a Raspberry Pi 4 and Pi Camera. I implemented the Tesseract OCR engine for accurate image-to-text conversion and integrated a Text-to-Speech (TTS) module for clear auditory output. A key focus was designing a simple, user-friendly interface with physical controls for playback. Outcome & Results: The project resulted in a functional and effective assistive device that empowers visually impaired users by granting them greater independence. The device provides real-time text-to-speech conversion and includes features for digital backup, showcasing a practical application of embedded systems and AI for social good.">
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Challenge</h4><p>To bridge the accessibility gap for visually impaired individuals by creating a portable, affordable device that can read printed text aloud in real-time.</p></div>
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">My Process & Contribution</h4><p>I engineered a solution using a Raspberry Pi 4 and Pi Camera. I implemented the Tesseract OCR engine for accurate image-to-text conversion and integrated a Text-to-Speech (TTS) module for clear auditory output. A key focus was designing a simple, user-friendly interface with physical controls for playback.</p></div>
-                                <div><h4 class="font-semibold text-lg text-indigo-300 mb-2">The Outcome & Results</h4><p>The project resulted in a functional and effective assistive device that empowers visually impaired users by granting them greater independence. The device provides real-time text-to-speech conversion and includes features for digital backup, showcasing a practical application of embedded systems and AI for social good.</p></div>
+                                <p>An assistive device for the visually impaired that reads printed text aloud, using a Raspberry Pi, OCR, and Text-to-Speech technology.</p>
                             </div>
                         </div>
                         <div class="mt-8">
                             <button class="btn btn-gemini w-full generate-summary-btn">
                                 <i data-feather="sparkles" class="w-5 h-5"></i>
-                                Generate AI Summary (TL;DR)
+                                View AI Case Study
                             </button>
                         </div>
                     </div>
@@ -227,8 +268,8 @@
         <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <p class="text-slate-400">&copy; 2025 Sukant Saumya. All rights reserved.</p>
             <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="https://github.com/Sukant-Saumya" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400"><i data-feather="github" class="w-6 h-6"></i></a>
-                <a href="https://www.linkedin.com/in/sukant-saumya-316238258/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400"><i data-feather="linkedin" class="w-6 h-6"></i></a>
+                <a href="https://github.com/Sukant-Saumya" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-feather="github" class="w-6 h-6"></i></a>
+                <a href="https://www.linkedin.com/in/sukant-saumya-316238258/" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-feather="linkedin" class="w-6 h-6"></i></a>
             </div>
         </div>
     </footer>
@@ -237,8 +278,8 @@
     <div id="ai-summary-modal" class="modal-overlay">
         <div class="modal-content">
             <button id="modal-close-button" class="absolute top-4 right-5 text-gray-400 hover:text-white text-3xl">&times;</button>
-            <h3 id="modal-title" class="text-3xl font-bold mb-4 text-indigo-300">AI-Powered Summary</h3>
-            <div id="modal-body">
+            <h3 id="modal-title" class="text-3xl font-bold mb-6 text-indigo-300">AI-Powered Summary</h3>
+            <div id="modal-body" class="prose prose-invert">
                 <!-- Spinner will be shown here -->
                 <!-- Content will be injected here -->
             </div>
