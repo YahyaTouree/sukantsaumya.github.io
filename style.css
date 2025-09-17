@@ -270,3 +270,33 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
 /* Prose styles for modal content */
 .prose h4 { color: #a78bfa; margin-top: 1.5em; margin-bottom: 0.5em; }
 .prose p { color: #cbd5e1; line-height: 1.7; }
+/* Add to the end of style.css */
+
+/* Sakura Petal Styles */
+.sakura-petal {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0; /* Behind content */
+    will-change: transform, opacity; /* Hint for performance */
+}
+
+/* Ensure the neon text has a smooth transition */
+.neon-text {
+    transition: text-shadow 0.3s ease;
+}
+
+/* Add a subtle pulse to the cursor dot for extra flair */
+.cursor-dot {
+    /* ... existing styles ... */
+    animation: cursorPulse 2s infinite ease-in-out;
+}
+
+@keyframes cursorPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+/* Ensure modal animations work correctly */
+.modal-content {
+    transform-origin: center center;
+}
