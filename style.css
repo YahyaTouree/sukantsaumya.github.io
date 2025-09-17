@@ -1,10 +1,7 @@
 /*
  * @file Custom stylesheet for the portfolio website.
  * @description This file contains all custom CSS rules that are not handled by Tailwind CSS.
- * It includes styles for base typography, a custom cursor, interactive components, animations,
- * and the AI summary modal.
  */
-
 /* --- Base & Typography --- */
 /* Defines the core styles for the body, including background color, default font, and text color. */
 body {
@@ -13,12 +10,10 @@ body {
     color: #e2e8f0; /* Light gray text */
     cursor: none; /* Hide the default system cursor to show the custom one */
 }
-
 /* Sets a distinct, serif font for all heading levels for stylistic contrast. */
 h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
 }
-
 /* --- Custom Cursor --- */
 /* Styles for the custom cursor elements. They are fixed-position and follow the mouse via JS. */
 .cursor-dot, .cursor-outline {
@@ -52,7 +47,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
     transform: translate(-50%, -50%) scale(1.5);
     background-color: rgba(129, 140, 248, 0.2);
 }
-
 /* --- Scroll Progress Bar --- */
 /* A fixed-position bar at the top of the page that indicates scroll progress. */
 #scroll-progress-bar {
@@ -65,7 +59,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
     z-index: 10000;
     transition: width 0.1s ease-out;
 }
-
 /* --- Header & Navigation --- */
 /* Styling for navigation links, including a hover effect with an animated underline. */
 .nav-link {
@@ -94,7 +87,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-
 /* --- Hero Section & Animation --- */
 /* Container for the generative SVG particle animation. */
 #hero-animation-container svg {
@@ -105,7 +97,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
 .glowing-particle {
     transition: transform 0.2s ease-out; /* Smooths the mouse repel effect */
 }
-
 /* --- General Components --- */
 /* Shared styles for card-like elements (bento boxes, project cards, timeline items). */
 .bento-item, .project-card, .timeline-content {
@@ -127,7 +118,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
     transform: translateY(-8px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
-
 /* Styling for technology tags on project cards. */
 .tag {
     background-color: #312e81; /* Dark indigo */
@@ -137,7 +127,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
     font-size: 0.75rem;
     font-weight: 500;
 }
-
 /* Styling for skill tags in the "About" section, with a tooltip on hover. */
 .skill-tag {
     background-color: #2d2d2d;
@@ -171,7 +160,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
     opacity: 1;
     transition: opacity 0.3s ease;
 }
-
 /* --- Timeline --- */
 /* Styling for the vertical timeline in the "Experience" section. */
 .timeline-item {
@@ -215,7 +203,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
 }
 .timeline-content { border-radius: 1rem; padding: 1.5rem; }
 .timeline-date { color: #9ca3af; font-size: 0.875rem; font-weight: 500; }
-
 /* --- Project Cards --- */
 /* Specific styles for project cards. */
 .project-image-container {
@@ -233,7 +220,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
 .project-card:hover .project-image {
     transform: scale(1.05);
 }
-
 /* --- Buttons --- */
 /* Base styles for all buttons. */
 .btn {
@@ -255,7 +241,6 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
 /* Special gradient style for the Gemini AI button. */
 .btn-gemini { background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%); color: #1e1e1e; font-weight: bold; }
 .btn-gemini:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 4px 15px rgba(102, 166, 255, 0.3); }
-
 /* --- Social Icons --- */
 /* Styling for social media icons in the footer. */
 .social-icon {
@@ -266,27 +251,21 @@ a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline {
     color: #818cf8;
     transform: translateY(-4px);
 }
-
 /* --- Animations & Modal --- */
 /* Fade-in animation for elements scrolled into view. */
 .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
-
 /* Neon glow effect for specific text elements. */
 .neon-text { font-family: 'Playfair Display', serif; color: #c4b5fd; text-shadow: 0 0 5px #c4b5fd, 0 0 10px #c4b5fd, 0 0 20px #8b5cf6, 0 0 30px #8b5cf6, 0 0 40px #8b5cf6; }
-
 /* Styles for the AI summary modal overlay. */
 .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 100; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
 .modal-overlay.visible { opacity: 1; visibility: visible; }
-
 /* Styles for the modal content box. */
 .modal-content { background-color: #1e1e1e; padding: 2rem; border-radius: 1rem; border: 1px solid #2d2d2d; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.3s ease; }
 .modal-overlay.visible .modal-content { transform: scale(1); }
-
 /* A simple spinner for loading states within the modal. */
 .spinner { border: 4px solid rgba(255, 255, 255, 0.2); border-left-color: #6366f1; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 2rem auto; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
 /* Custom prose styles for formatting the AI-generated HTML content in the modal. */
 /* Prose styles for modal content */
 .prose h4 { color: #a78bfa; margin-top: 1.5em; margin-bottom: 0.5em; }
