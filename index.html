@@ -4,275 +4,385 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sukant Saumya - Software Developer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sukant Saumya - Flutter & Python Developer crafting digital solutions that perform. View my projects and get in touch.">
+    <meta name="keywords" content="Sukant Saumya, Flutter Developer, Python Developer, Mobile App Development, Software Engineer">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
+    
     <!-- anime.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="antialiased">
+<body class="antialiased overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-[10000] bg-black flex items-center justify-center">
+        <div class="loading-container">
+            <div class="loading-text font-orbitron text-4xl md:text-6xl">
+                <span>S</span><span>U</span><span>K</span><span>A</span><span>N</span><span>T</span>
+            </div>
+            <div class="loading-bar mt-8"></div>
+        </div>
+    </div>
+
     <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
+    
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress-bar"></div>
+    
+    <!-- Particle Canvas -->
+    <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+    
     <!-- Header / Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-xl border-b border-slate-800/50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold font-serif flex items-center gap-3 group">
-                <span class="group-hover:text-indigo-400 transition-colors duration-300">Sukant Saumya</span>
-                <span class="neon-text text-3xl group-hover:animate-pulse">スカント</span>
-            </a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#contact" class="btn btn-secondary px-6 py-2">Contact</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden p-2">
-                <i data-feather="menu" class="w-6 h-6"></i>
-            </button>
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-xl border-b border-slate-800/50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center gap-2 sm:gap-3 group">
+                    <span class="text-lg sm:text-2xl font-bold font-orbitron group-hover:text-indigo-400 transition-colors duration-300">SUKANT</span>
+                    <span class="japanese-name text-xl sm:text-3xl">スカント</span>
+                </a>
+                
+                <nav class="hidden md:flex items-center gap-2 lg:gap-8">
+                    <a href="#about" class="nav-link px-3 py-2">About</a>
+                    <a href="#projects" class="nav-link px-3 py-2">Projects</a>
+                    <a href="#experience" class="nav-link px-3 py-2">Experience</a>
+                    <a href="#contact" class="btn-glow px-4 lg:px-6 py-2">Contact</a>
+                </nav>
+                
+                <button id="mobile-menu-button" class="md:hidden p-2 menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
+        
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 backdrop-blur-sm">
-            <a href="#about" class="block text-center py-3 px-4 hover:bg-gray-800">About</a>
-            <a href="#projects" class="block text-center py-3 px-4 hover:bg-gray-800">Projects</a>
-            <a href="#experience" class="block text-center py-3 px-4 hover:bg-gray-800">Experience</a>
-            <a href="#contact" class="block text-center py-3 px-4 hover:bg-gray-800">Contact</a>
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+            <nav class="flex flex-col">
+                <a href="#about" class="mobile-nav-link">About</a>
+                <a href="#projects" class="mobile-nav-link">Projects</a>
+                <a href="#experience" class="mobile-nav-link">Experience</a>
+                <a href="#contact" class="mobile-nav-link">Contact</a>
+            </nav>
         </div>
     </header>
-    <main class="container mx-auto px-6 pt-32">
+
+    <main class="relative z-10">
         <!-- Hero Section -->
-        <section id="home" class="min-h-[80vh] flex items-center fade-in">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6 z-10">
-                    <span class="tag">Flutter & Python Developer</span>
-                    <h1 class="text-5xl md:text-7xl font-bold leading-tight">Crafting Digital Solutions that Perform.</h1>
-                    <p class="text-lg text-slate-400">
-                        A dedicated BTech student with a strong foundation in software development and a passion for creating intuitive, high-performance mobile applications. Let's build something amazing together.
-                    </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-                        <a href="#contact" class="btn btn-primary text-lg">Get In Touch</a>
-                        <a href="#projects" class="btn btn-secondary text-lg">View My Work</a>
+        <section id="home" class="min-h-screen flex items-center px-4 sm:px-6 pt-20 sm:pt-0">
+            <div class="container mx-auto">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div class="space-y-6 z-10 text-center lg:text-left">
+                        <div class="cyber-badge inline-block">
+                            <span class="text-xs sm:text-sm">FLUTTER & PYTHON DEVELOPER</span>
+                        </div>
+                        
+                        <h1 class="hero-title text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">
+                            <span class="title-word">Crafting</span>
+                            <span class="title-word">Digital</span>
+                            <span class="title-word">Solutions</span>
+                            <span class="title-word gradient-text">that</span>
+                            <span class="title-word gradient-text">Perform.</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0">
+                            A dedicated BTech student with a strong foundation in software development and a passion for creating intuitive, high-performance mobile applications.
+                        </p>
+                        
+                        <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="#contact" class="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3">
+                                <span>Get In Touch</span>
+                                <i data-feather="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                            </a>
+                            <a href="#projects" class="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-3">
+                                <span>View My Work</span>
+                                <i data-feather="code" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div id="hero-animation-container" class="hidden md:flex items-center justify-center relative w-full h-96">
-                    <!-- Anime-inspired SVG animation will be injected here by JS -->
+                    
+                    <div class="hidden lg:block">
+                        <div id="hero-animation" class="relative w-full h-[400px] lg:h-[500px]">
+                            <!-- 3D Animation Container -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
         <!-- About & Skills Section -->
-        <section id="about" class="py-24">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold">About Me</h2>
-                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">A glimpse into my skills, experience, and passion for technology.</p>
-            </div>
-            <div class="grid lg:grid-cols-5 gap-8 items-start">
-                <div class="lg:col-span-2 fade-in">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="A developer's workspace with code on a screen" class="rounded-2xl w-full h-auto object-cover shadow-2xl shadow-indigo-900/20 hover-lift">
+        <section id="about" class="py-16 sm:py-24 px-4 sm:px-6">
+            <div class="container mx-auto">
+                <div class="section-header text-center mb-12 sm:mb-16">
+                    <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-bold">About Me</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-sm sm:text-base">A glimpse into my skills, experience, and passion for technology</p>
                 </div>
-                <div class="lg:col-span-3 space-y-8">
-                    <div class="bento-item fade-in" style="transition-delay: 100ms;">
-                        <div class="flex items-center gap-4 mb-4"><i data-feather="user" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Who I Am</h3></div>
-                        <p class="text-slate-400">I am a Computer Science student at Vellore Institute of Technology, deeply passionate about turning complex problems into elegant software solutions. My journey in tech is driven by a curiosity to learn and a desire to build applications that make a difference.</p>
-                    </div>
-                    <div class="bento-item fade-in" style="transition-delay: 200ms;">
-                        <div class="flex items-center gap-4 mb-4"><i data-feather="code" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">Technical Skills</h3></div>
-                        <div class="flex flex-wrap gap-4">
-                            <span class="skill-tag" data-tooltip="Proficient">Python</span>
-                            <span class="skill-tag" data-tooltip="Proficient">Dart</span>
-                            <span class="skill-tag" data-tooltip="Proficient">Flutter</span>
-                            <span class="skill-tag" data-tooltip="Intermediate">Java</span>
-                            <span class="skill-tag" data-tooltip="Intermediate">OpenGL</span>
-                            <span class="skill-tag" data-tooltip="Advanced">Git</span>
-                            <span class="skill-tag" data-tooltip="Advanced">Firebase</span>
+                
+                <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Profile Card -->
+                    <div class="about-card lg:col-span-1">
+                        <div class="relative overflow-hidden rounded-2xl h-64 sm:h-80 lg:h-full">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" 
+                                 alt="Developer workspace" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-xl sm:text-2xl font-bold text-white">Sukant Saumya</h3>
+                                <p class="text-sm text-gray-300">Full Stack Developer</p>
+                            </div>
                         </div>
                     </div>
-                     <div class="grid md:grid-cols-2 gap-8">
-                        <a href="https://github.com/sukantsaumya" target="_blank" rel="noopener noreferrer" class="bento-item flex-col justify-between fade-in" style="transition-delay: 300ms;">
-                            <div class="flex items-center gap-4 mb-4"><i data-feather="github" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">GitHub</h3></div>
-                            <p class="text-slate-400">View my projects, contributions, and coding activity.</p>
-                        </a>
-                        <a href="https://www.linkedin.com/in/sukantsaumya/" target="_blank" rel="noopener noreferrer" class="bento-item flex-col justify-between fade-in" style="transition-delay: 400ms;">
-                            <div class="flex items-center gap-4 mb-4"><i data-feather="linkedin" class="w-8 h-8 text-indigo-400"></i><h3 class="text-2xl font-bold">LinkedIn</h3></div>
-                            <p class="text-slate-400">Connect with me on my professional network.</p>
-                        </a>
+                    
+                    <!-- Info Grid -->
+                    <div class="lg:col-span-2 grid gap-4 sm:gap-6">
+                        <!-- Who I Am -->
+                        <div class="info-card">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="icon-box">
+                                    <i data-feather="user" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold">Who I Am</h3>
+                            </div>
+                            <p class="text-sm sm:text-base text-slate-400">
+                                Computer Science student at VIT-AP, passionate about creating elegant solutions to complex problems. 
+                                My journey in tech is driven by curiosity and a desire to build impactful applications.
+                            </p>
+                        </div>
+                        
+                        <!-- Technical Skills -->
+                        <div class="info-card">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="icon-box">
+                                    <i data-feather="code" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold">Technical Skills</h3>
+                            </div>
+                            <div class="skills-grid">
+                                <div class="skill-item" data-level="90">
+                                    <span>Python</span>
+                                    <div class="skill-bar"><div class="skill-progress"></div></div>
+                                </div>
+                                <div class="skill-item" data-level="85">
+                                    <span>Flutter</span>
+                                    <div class="skill-bar"><div class="skill-progress"></div></div>
+                                </div>
+                                <div class="skill-item" data-level="80">
+                                    <span>Dart</span>
+                                    <div class="skill-bar"><div class="skill-progress"></div></div>
+                                </div>
+                                <div class="skill-item" data-level="75">
+                                    <span>Firebase</span>
+                                    <div class="skill-bar"><div class="skill-progress"></div></div>
+                                </div>
+                                <div class="skill-item" data-level="70">
+                                    <span>Java</span>
+                                    <div class="skill-bar"><div class="skill-progress"></div></div>
+                                </div>
+                                <div class="skill-item" data-level="85">
+                                    <span>Git</span>
+                                    <div class="skill-bar"><div class="skill-progress"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Connect -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <a href="https://github.com/sukantsaumya" target="_blank" rel="noopener noreferrer" 
+                               class="connect-card group">
+                                <i data-feather="github" class="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                                <div>
+                                    <h4 class="font-semibold">GitHub</h4>
+                                    <p class="text-xs text-slate-400">View my projects</p>
+                                </div>
+                            </a>
+                            <a href="https://www.linkedin.com/in/sukantsaumya/" target="_blank" rel="noopener noreferrer" 
+                               class="connect-card group">
+                                <i data-feather="linkedin" class="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                                <div>
+                                    <h4 class="font-semibold">LinkedIn</h4>
+                                    <p class="text-xs text-slate-400">Let's connect</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Experience Section -->
-        <section id="experience" class="py-24">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold">My Journey</h2>
-                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">A timeline of my key experiences and education.</p>
-            </div>
-            <div class="timeline-container relative">
-                <!-- Timeline Line -->
-                <div class="absolute left-4 md:left-1/2 w-0.5 h-full bg-slate-700 -translate-x-1/2"></div>
-                <!-- Timeline Item: GeeksForGeeks -->
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2023 - Present</span>
-                        <h3 class="text-2xl font-bold">Technical Content Writer</h3>
-                        <p class="text-indigo-400 font-semibold">GeeksForGeeks</p>
-                        <p class="text-slate-400 mt-2">Crafting high-quality technical articles on various programming topics and technologies, ensuring accuracy and clarity for a global audience.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item: GDSC -->
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2022 - Present</span>
-                        <h3 class="text-2xl font-bold">Technical Team Member</h3>
-                        <p class="text-indigo-400 font-semibold">Google Developer Student Club</p>
-                        <p class="text-slate-400 mt-2">Collaborating on projects and events to foster technical education and community growth at my university.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item: VIT-AP -->
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2022 - 2026</span>
-                        <h3 class="text-2xl font-bold">B.Tech, Computer Science</h3>
-                        <a href="https://vitap.ac.in/" target="_blank" rel="noopener noreferrer" class="text-indigo-400 font-semibold hover:underline">Vellore Institute of Technology - AP</a>
-                        <p class="text-slate-400 mt-2">Pursuing my undergraduate degree with a focus on software development, data structures, and algorithms.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item: St. Karen's -->
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Completed 2022</span>
-                        <h3 class="text-2xl font-bold">Secondary Education (X & XII)</h3>
-                         <a href="https://www.stkarenshighschool.com/" target="_blank" rel="noopener noreferrer" class="text-indigo-400 font-semibold hover:underline">St. Karen's High School, Patna</a>
-                        <p class="text-slate-400 mt-2">Completed my high school education, building a strong foundation in science and mathematics.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!-- Projects Section -->
-        <section id="projects" class="py-24">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold">Featured Projects</h2>
-                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">A selection of my work. Each project is a story of a problem solved.</p>
-            </div>
-            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Project 1: Parking Management System -->
-                <div class="project-card rounded-2xl overflow-hidden fade-in">
-                    <div class="project-image-container">
-                        <img src="https://images.unsplash.com/photo-1576679564263-9f94a8a7c131?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Parking Management System" class="project-image">
-                    </div>
-                    <div class="p-8 project-content">
-                        <div class="project-details">
-                            <h3 class="text-3xl font-bold mb-4">Parking Management System</h3>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">Google Maps API</span><span class="tag">Stripe</span>
-                            </div>
-                            <div class="space-y-6 text-slate-300" data-full-text="Challenge: Urban drivers face constant frustration finding available parking. The goal was to create a seamless mobile solution to locate, reserve, and pay for parking spots in real-time, reducing congestion and stress. Process & Contribution: I architected and developed a full-featured Flutter application from the ground up. This involved implementing secure user authentication with Firebase, integrating the Google Maps API for a live view of parking availability, and building a robust booking and payment system with Stripe and PayPal APIs. Outcome & Results: The result is a comprehensive platform that not only helps drivers but also provides an admin panel for parking lot owners to manage spots and bookings efficiently. The app successfully streamlines the entire parking lifecycle, from search to payment.">
-                                <p>A seamless mobile solution to locate, reserve, and pay for parking spots in real-time, reducing urban congestion and driver stress.</p>
-                            </div>
-                        </div>
-                        <div class="mt-8">
-                            <button class="btn btn-gemini w-full generate-summary-btn">
-                                <i data-feather="sparkles" class="w-5 h-5"></i>
-                                View AI Case Study
-                            </button>
-                        </div>
-                    </div>
+        <section id="projects" class="py-16 sm:py-24 px-4 sm:px-6">
+            <div class="container mx-auto">
+                <div class="section-header text-center mb-12 sm:mb-16">
+                    <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-bold">Featured Projects</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-sm sm:text-base">A selection of my work showcasing problem-solving and technical expertise</p>
                 </div>
-                <!-- Project 2: Music Player App -->
-                <div class="project-card rounded-2xl overflow-hidden fade-in" style="transition-delay: 200ms;">
-                    <div class="project-image-container">
-                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Music Player App" class="project-image">
-                    </div>
-                    <div class="p-8 project-content">
-                        <div class="project-details">
-                            <h3 class="text-3xl font-bold mb-4">Music Player App</h3>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="tag">Flutter</span><span class="tag">Clean Architecture</span><span class="tag">Retrofit</span><span class="tag">SQLite</span>
-                            </div>
-                            <div class="space-y-6 text-slate-300" data-full-text="Challenge: To develop a high-performance music player that offers both online streaming and offline playback capabilities, while maintaining a clean, scalable, and maintainable codebase. Process & Contribution: I adopted Clean Architecture principles to ensure a decoupled and testable app structure. I integrated online music APIs using Retrofit for seamless streaming and implemented an SQLite database for robust offline storage and playback. ExoPlayer was utilized for its efficiency and advanced playback features. Outcome & Results: The final product is a feature-rich music application that provides a smooth and reliable user experience. The architectural choices ensure the app is easy to scale and maintain, demonstrating a strong understanding of mobile development best practices.">
-                                <p>A high-performance music player with online streaming and offline playback, built on Clean Architecture principles for scalability.</p>
+                
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card group">
+                        <div class="project-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1576679564263-9f94a8a7c131?q=80&w=1974&auto=format&fit=crop" 
+                                 alt="Parking Management System" 
+                                 class="project-image">
+                            <div class="project-overlay">
+                                <button class="btn-view-project">View Details</button>
                             </div>
                         </div>
-                        <div class="mt-8">
-                           <button class="btn btn-gemini w-full generate-summary-btn">
-                                <i data-feather="sparkles" class="w-5 h-5"></i>
-                                View AI Case Study
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 3: Visual Read Assist Device -->
-                <div class="project-card rounded-2xl overflow-hidden fade-in lg:col-span-2">
-                    <div class="project-image-container">
-                         <img src="https://images.unsplash.com/photo-1620712943543-285f726a8484?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Visual Read Assist Device" class="project-image">
-                    </div>
-                     <div class="p-8 project-content">
-                        <div class="project-details">
-                            <h3 class="text-3xl font-bold mb-4">Visual Read Assist Device</h3>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="tag">Python</span><span class="tag">Raspberry Pi</span><span class="tag">OCR</span><span class="tag">TTS</span>
-                            </div>
-                            <div class="space-y-6 text-slate-300" data-full-text="Challenge: To bridge the accessibility gap for visually impaired individuals by creating a portable, affordable device that can read printed text aloud in real-time. Process & Contribution: I engineered a solution using a Raspberry Pi 4 and Pi Camera. I implemented the Tesseract OCR engine for accurate image-to-text conversion and integrated a Text-to-Speech (TTS) module for clear auditory output. A key focus was designing a simple, user-friendly interface with physical controls for playback. Outcome & Results: The project resulted in a functional and effective assistive device that empowers visually impaired users by granting them greater independence. The device provides real-time text-to-speech conversion and includes features for digital backup, showcasing a practical application of embedded systems and AI for social good.">
-                                <p>An assistive device for the visually impaired that reads printed text aloud, using a Raspberry Pi, OCR, and Text-to-Speech technology.</p>
+                        <div class="project-content">
+                            <h3 class="text-xl sm:text-2xl font-bold mb-2">Parking Management System</h3>
+                            <p class="text-sm text-slate-400 mb-4">Real-time parking solution with reservation and payment integration</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Flutter</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">Google Maps</span>
+                                <span class="tech-tag">Stripe</span>
                             </div>
                         </div>
-                        <div class="mt-8">
-                            <button class="btn btn-gemini w-full generate-summary-btn">
-                                <i data-feather="sparkles" class="w-5 h-5"></i>
-                                View AI Case Study
-                            </button>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-card group">
+                        <div class="project-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop" 
+                                 alt="Music Player App" 
+                                 class="project-image">
+                            <div class="project-overlay">
+                                <button class="btn-view-project">View Details</button>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="text-xl sm:text-2xl font-bold mb-2">Music Player App</h3>
+                            <p class="text-sm text-slate-400 mb-4">High-performance music player with streaming and offline playback</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Flutter</span>
+                                <span class="tech-tag">Clean Architecture</span>
+                                <span class="tech-tag">SQLite</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="project-card group">
+                        <div class="project-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1620712943543-285f726a8484?q=80&w=2070&auto=format&fit=crop" 
+                                 alt="Visual Read Assist Device" 
+                                 class="project-image">
+                            <div class="project-overlay">
+                                <button class="btn-view-project">View Details</button>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="text-xl sm:text-2xl font-bold mb-2">Visual Read Assist Device</h3>
+                            <p class="text-sm text-slate-400 mb-4">Assistive device for visually impaired using OCR and TTS</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Raspberry Pi</span>
+                                <span class="tech-tag">OCR</span>
+                                <span class="tech-tag">TTS</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Experience Timeline -->
+        <section id="experience" class="py-16 sm:py-24 px-4 sm:px-6">
+            <div class="container mx-auto">
+                <div class="section-header text-center mb-12 sm:mb-16">
+                    <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-bold">Experience Timeline</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-sm sm:text-base">My journey through education and professional growth</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item" data-year="2023">
+                        <div class="timeline-content">
+                            <h3 class="text-lg sm:text-xl font-bold">Technical Content Writer</h3>
+                            <p class="text-indigo-400 text-sm">GeeksForGeeks</p>
+                            <p class="text-xs sm:text-sm text-slate-400 mt-2">Creating high-quality technical articles on programming topics</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-year="2022">
+                        <div class="timeline-content">
+                            <h3 class="text-lg sm:text-xl font-bold">Technical Team Member</h3>
+                            <p class="text-indigo-400 text-sm">Google Developer Student Club</p>
+                            <p class="text-xs sm:text-sm text-slate-400 mt-2">Collaborating on projects and organizing tech events</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-year="2022">
+                        <div class="timeline-content">
+                            <h3 class="text-lg sm:text-xl font-bold">B.Tech Computer Science</h3>
+                            <p class="text-indigo-400 text-sm">VIT-AP</p>
+                            <p class="text-xs sm:text-sm text-slate-400 mt-2">Currently pursuing undergraduate degree (2022-2026)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
-        <section id="contact" class="py-24 text-center fade-in">
-            <div class="max-w-3xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-bold">Get In Touch</h2>
-                <p class="text-slate-400 mt-6 text-lg">
-                    I'm actively seeking placement opportunities and am open to exciting collaborations. If you have a role that you think would be a good fit, or just want to connect, I'd love to hear from you.
-                </p>
-                <div class="mt-10">
-                    <a href="mailto:14saumya2004@gmail.com" class="btn btn-primary text-xl px-12 py-4">
-                        Say Hello
+        <section id="contact" class="py-16 sm:py-24 px-4 sm:px-6">
+            <div class="container mx-auto text-center">
+                <div class="contact-container max-w-3xl mx-auto">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">Let's Connect</h2>
+                    <p class="text-slate-400 text-sm sm:text-lg mb-8 sm:mb-10">
+                        I'm actively seeking placement opportunities and exciting collaborations. 
+                        Let's create something amazing together!
+                    </p>
+                    <a href="mailto:14saumya2004@gmail.com" class="btn-contact inline-flex items-center gap-3 text-lg sm:text-xl px-8 sm:px-12 py-3 sm:py-4">
+                        <i data-feather="mail" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                        <span>Say Hello</span>
                     </a>
+                    
+                    <div class="social-links flex justify-center gap-6 mt-8 sm:mt-12">
+                        <a href="https://github.com/sukantsaumya" target="_blank" class="social-icon">
+                            <i data-feather="github" class="w-6 h-6"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sukantsaumya/" target="_blank" class="social-icon">
+                            <i data-feather="linkedin" class="w-6 h-6"></i>
+                        </a>
+                        <a href="https://twitter.com/sukantsaumya" target="_blank" class="social-icon">
+                            <i data-feather="twitter" class="w-6 h-6"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+
     <!-- Footer -->
-    <footer class="border-t border-slate-800">
-        <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <p class="text-slate-400">&copy; 2025 Sukant Saumya. All rights reserved.</p>
-            <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="https://github.com/sukantsaumya" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-feather="github" class="w-6 h-6"></i></a>
-                <a href="https://www.linkedin.com/in/sukantsaumya/" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-feather="linkedin" class="w-6 h-6"></i></a>
-            </div>
+    <footer class="border-t border-slate-800 py-6 sm:py-8 px-4 sm:px-6">
+        <div class="container mx-auto text-center">
+            <p class="text-slate-400 text-sm">© 2025 Sukant Saumya. All rights reserved.</p>
         </div>
     </footer>
-    <!-- AI Summary Modal -->
-    <div id="ai-summary-modal" class="modal-overlay">
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
         <div class="modal-content">
-            <button id="modal-close-button" class="absolute top-4 right-5 text-gray-400 hover:text-white text-3xl">&times;</button>
-            <h3 id="modal-title" class="text-3xl font-bold mb-6 text-indigo-300">AI-Powered Summary</h3>
-            <div id="modal-body" class="prose prose-invert">
-                <!-- Spinner will be shown here -->
-                <!-- Content will be injected here -->
-            </div>
+            <button class="modal-close">&times;</button>
+            <div id="modal-body"></div>
         </div>
     </div>
+
     <!-- Custom JavaScript -->
-    <!-- Make sure anime.js is loaded before app.js -->
     <script src="app.js" defer></script>
 </body>
 </html>
