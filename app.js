@@ -2,21 +2,21 @@
 // Data
 const skillsData = [
   {name:'Python', icon:'fab fa-python'},
-  {name:'Pandas', icon:'fas fa-table'},
+  {name:'Pandas', icon:'fas fa-chart-bar'},
   {name:'NumPy', icon:'fas fa-calculator'},
-  {name:'Scikit-Learn', icon:'fas fa-flask'},
+  {name:'Scikit-Learn', icon:'fas fa-brain'},
   {name:'Java', icon:'fab fa-java'},
   {name:'SQL', icon:'fas fa-database'},
   {name:'Time Series', icon:'fas fa-chart-line'},
   {name:'Monte Carlo', icon:'fas fa-dice'},
   {name:'Risk Mgmt', icon:'fas fa-shield-alt'},
   {name:'Machine Learning', icon:'fas fa-robot'},
-  {name:'Fixed Income', icon:'fas fa-file-invoice-dollar'},
-  {name:'Derivatives', icon:'fas fa-diagram-project'},
-  {name:'Power BI', icon:'fas fa-chart-bar'},
-  {name:'Tableau', icon:'fas fa-chart-pie'},
+  {name:'Fixed Income', icon:'fas fa-chart-area'},
+  {name:'Derivatives', icon:'fas fa-project-diagram'},
+  {name:'Power BI', icon:'fas fa-chart-pie'},
+  {name:'Tableau', icon:'fas fa-chart-bar'},
   {name:'Git', icon:'fab fa-git-alt'},
-  {name:'VBA', icon:'fas fa-file-excel'}
+  {name:'VBA', icon:'fas fa-file-code'}
 ];
 
 const projectsData = [
