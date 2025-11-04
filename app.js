@@ -13,6 +13,8 @@ const skillsData = [
   {name:'Machine Learning', icon:'fas fa-robot'},
   {name:'Fixed Income', icon:'fas fa-file-invoice-dollar'},
   {name:'Derivatives', icon:'fas fa-diagram-project'},
+  {name:'Power BI', icon:'fas fa-chart-bar'},
+  {name:'Tableau', icon:'fas fa-chart-pie'},
   {name:'Git', icon:'fab fa-git-alt'},
   {name:'VBA', icon:'fas fa-file-excel'}
 ];
