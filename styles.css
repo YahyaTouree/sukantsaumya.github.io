@@ -56,11 +56,32 @@ a { color: inherit; text-decoration: none; }
 
 @keyframes gradMove { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 
-.project-card { perspective: 1200px; }
-.project-inner { transition: transform .75s ease; transform-style: preserve-3d; position:relative; }
-.project-front, .project-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: absolute; inset: 0; border-radius: 1rem; overflow: hidden; }
-.project-back { transform: rotateY(180deg); }
-.project-card:hover .project-inner { transform: rotateY(180deg); }
+.project-card { position: relative; }
+.project-inner { position: relative; }
+.project-front { position: relative; }
+.project-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all .3s ease;
+  pointer-events: none;
+}
+.project-card:hover .project-back {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.ai-explain-btn {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto !important;
+}
 
 .rounded-full-crop { width: 220px; height: 220px; border-radius: 9999px; overflow: hidden; border: 4px solid var(--accent-color); }
 .rounded-full-crop img { width: 100%; height: 100%; object-fit: cover; display: block; }
