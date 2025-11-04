@@ -74,8 +74,8 @@ const certificationsData = [
   {name:'Quant Finance & Algo Trading', issuer:'Udemy', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/udemy_logo_icon_170241.png'},
   {name:'IBM Data Science Professional', issuer:'Coursera', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/coursera_logo_icon_169315.png'},
   {name:'Microsoft Azure AI Fundamentals', issuer:'Microsoft', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/microsoft_azure_logo_icon_168977.png'},
-  {name:'Financial Risk Manager (FRM) - Part I', issuer:'GARP', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/garp_logo_icon_169315.png'},
-  {name:'Bloomberg Market Concepts', issuer:'Bloomberg', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/bloomberg_logo_icon_169315.png'}
+  {name:'Financial Risk Manager (FRM) - Part I', issuer:'GARP', logo:'https://via.placeholder.com/48x48/007cf0/ffffff?text=FRM'},
+  {name:'Bloomberg Market Concepts', issuer:'Bloomberg', logo:'https://via.placeholder.com/48x48/007cf0/ffffff?text=BMC'}
 ];
 
 // Helpers
