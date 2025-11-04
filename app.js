@@ -37,8 +37,27 @@ const projectsData = [
 ];
 
 const experienceData = [
-  { role:'Technical Content Writer', company:'GeeksForGeeks', date:'2023 - Present', description:'Authored technical articles explicating advanced topics.', logo:'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png' },
-  { role:'Technical Team Member', company:'Google DSC', date:'2023 - Present', description:'Organized workshops and community events.', logo:'https://developers.google.com/community/gdsc/images/gdsc-social-share.png' }
+  {
+    role:'ML Analyst Intern',
+    company:'Intrain Tech',
+    date:'Summer 2024',
+    description:'Evaluated ML models for loan risk assessment, identifying a Random Forest model that improved default prediction accuracy by 15%. Engineered 5 new features that increased model AUC score from 0.75 to 0.78. Preprocessed and cleaned a dataset of 100,000+ loan applications for model training.',
+    logo:'https://via.placeholder.com/48x48/007cf0/ffffff?text=IT'
+  },
+  {
+    role:'Technical Content Writer',
+    company:'GeeksForGeeks',
+    date:'2023 - Present',
+    description:'Authored 10+ technical articles on data structures and Python, accumulating over 200,000 total views with 3 articles featured on the platform\'s homepage.',
+    logo:'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png'
+  },
+  {
+    role:'Technical Team Member',
+    company:'Google DSC',
+    date:'2023 - Present',
+    description:'Co-organized 4 technical workshops on Python and Machine Learning, attracting 150+ student attendees. Collaborated in cross-functional team to plan and execute hands-on learning sessions.',
+    logo:'https://developers.google.com/community/gdsc/images/gdsc-social-share.png'
+  }
 ];
 
 const certificationsData = [
