@@ -13,6 +13,8 @@ const skillsData = [
   {name:'Machine Learning', icon:'fas fa-robot'},
   {name:'Fixed Income', icon:'fas fa-file-invoice-dollar'},
   {name:'Derivatives', icon:'fas fa-diagram-project'},
+  {name:'Power BI', icon:'fas fa-chart-bar'},
+  {name:'Tableau', icon:'fas fa-chart-pie'},
   {name:'Git', icon:'fab fa-git-alt'},
   {name:'VBA', icon:'fas fa-file-excel'}
 ];
@@ -33,18 +35,48 @@ const projectsData = [
     details:[{label:'Sharpe', value:'1.8'},{label:'Annualized', value:'15', unit:'%'}],
     tags:['Backtest','Algos','Python'],
     image:'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=2000&auto=format&fit=crop'
+  },
+  {
+    title:'Options Pricing & Volatility Analysis',
+    subtitle:'Black-Scholes & Binomial Models',
+    description:'Implemented Black-Scholes-Merton and Binomial Tree models in Python to price European options. Fetched real-market data to calibrate models and analyze implied volatility smiles, identifying potential mispricings.',
+    details:[{label:'Models', value:'2'},{label:'Accuracy', value:'98', unit:'%'},{label:'Vol Surface', value:'Interactive'}],
+    tags:['Options Pricing','Black-Scholes','Volatility','Python'],
+    image:'https://images.unsplash.com/photo-1611289658038-e8b53246400c?q=80&w=2000&auto=format&fit=crop'
   }
 ];
 
 const experienceData = [
-  { role:'Technical Content Writer', company:'GeeksForGeeks', date:'2023 - Present', description:'Authored technical articles explicating advanced topics.', logo:'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png' },
-  { role:'Technical Team Member', company:'Google DSC', date:'2023 - Present', description:'Organized workshops and community events.', logo:'https://developers.google.com/community/gdsc/images/gdsc-social-share.png' }
+  {
+    role:'ML Analyst Intern',
+    company:'Intrain Tech',
+    date:'Summer 2024',
+    description:'Evaluated ML models for loan risk assessment, identifying a Random Forest model that improved default prediction accuracy by 15%. Engineered 5 new features that increased model AUC score from 0.75 to 0.78. Preprocessed and cleaned a dataset of 100,000+ loan applications for model training.',
+    logo:'https://via.placeholder.com/48x48/007cf0/ffffff?text=IT'
+  },
+  {
+    role:'Technical Content Writer',
+    company:'GeeksForGeeks',
+    date:'2023 - Present',
+    description:'Authored 10+ technical articles on data structures and Python, accumulating over 200,000 total views with 3 articles featured on the platform\'s homepage.',
+    logo:'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png'
+  },
+  {
+    role:'Technical Team Member',
+    company:'Google DSC',
+    date:'2023 - Present',
+    description:'Co-organized 4 technical workshops on Python and Machine Learning, attracting 150+ student attendees. Collaborated in cross-functional team to plan and execute hands-on learning sessions.',
+    logo:'https://developers.google.com/community/gdsc/images/gdsc-social-share.png'
+  }
 ];
 
 const certificationsData = [
   {name:'Quant Finance & Algo Trading', issuer:'Udemy', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/udemy_logo_icon_170241.png'},
   {name:'IBM Data Science Professional', issuer:'Coursera', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/coursera_logo_icon_169315.png'},
-  {name:'Microsoft Azure AI Fundamentals', issuer:'Microsoft', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/microsoft_azure_logo_icon_168977.png'}
+  {name:'Microsoft Azure AI Fundamentals', issuer:'Microsoft', logo:'https://cdn.icon-icons.com/icons2/2699/PNG/512/microsoft_azure_logo_icon_168977.png'},
+  {name:'Financial Risk Manager (FRM) - Part I', issuer:'GARP', logo:'https://via.placeholder.com/48x48/007cf0/ffffff?text=FRM'},
+  {name:'Bloomberg Market Concepts', issuer:'Bloomberg', logo:'https://via.placeholder.com/48x48/007cf0/ffffff?text=BMC'},
+  {name:'Chartered Financial Analyst - Level I', issuer:'CFA Institute', logo:'https://via.placeholder.com/48x48/007cf0/ffffff?text=CFA'}
 ];
 
 // Helpers
