@@ -35,6 +35,14 @@ const projectsData = [
     details:[{label:'Sharpe', value:'1.8'},{label:'Annualized', value:'15', unit:'%'}],
     tags:['Backtest','Algos','Python'],
     image:'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=2000&auto=format&fit=crop'
+  },
+  {
+    title:'Options Pricing & Volatility Analysis',
+    subtitle:'Black-Scholes & Binomial Models',
+    description:'Implemented Black-Scholes-Merton and Binomial Tree models in Python to price European options. Fetched real-market data to calibrate models and analyze implied volatility smiles, identifying potential mispricings.',
+    details:[{label:'Models', value:'2'},{label:'Accuracy', value:'98', unit:'%'},{label:'Vol Surface', value:'Interactive'}],
+    tags:['Options Pricing','Black-Scholes','Volatility','Python'],
+    image:'https://images.unsplash.com/photo-1611289658038-e8b53246400c?q=80&w=2000&auto=format&fit=crop'
   }
 ];
 
